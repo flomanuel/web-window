@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/flomanuel/web-window/master/assets/512x512.png" width='150px' alt="WebWindow logo">
+  <img src="https://github.com/flomanuel/web-window/blob/87d6689d7c0d92c3e39a5ea2422f521d960d78f6/assets/512x512.png" width='150px' alt="WebWindow logo">
 </p>
 
 <h1 align="center"> WebWindow </h1>
