@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    privileged: true
+    environment:
+      - DISPLAY=unix$DISPLAY
+    volumes:
+      - ./:/app
+      - ./docker/cache/:/root/.cache/
+      - ./docker/output/:/output/
+      - /tmp/.X11-unix:/tmp/.X11-unix

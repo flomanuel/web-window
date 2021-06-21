@@ -1,0 +1,40 @@
+{
+  "name": "web-window",
+  "version": "1.0.0",
+  "description": "Electron-based linux application that makes all your favourite webapps run like native apps.",
+  "keywords": [
+    "electron",
+    "chromium",
+    "webapp",
+    "wrapper",
+    "linux",
+    "native",
+    "application",
+    "app",
+    "WebWindow"
+  ],
+  "author": {
+    "name": "flomanuel",
+    "url": "https://github.com/flomanuel"
+  },
+  "engines": {
+    "node": "^15.0.0"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flomanuel/web-window/issues"
+  },
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ./src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:flomanuel/web-window.git"
+  },
+  "homepage": "https://github.com/flomanuel/web-window#readme",
+  "devDependencies": {
+    "electron": "^12.0.2",
+    "electron-builder": "^22.10.5"
+  }
+}

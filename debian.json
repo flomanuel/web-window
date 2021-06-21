@@ -1,0 +1,10 @@
+{
+  "dest": "/output/package/",
+  "icon": "./resources/app/assets/512x512.png",
+  "categories": [
+    "Utility"
+  ],
+  "lintianOverrides": [
+    "changelog-file-missing-in-native-package"
+  ]
+}
