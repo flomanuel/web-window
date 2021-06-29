@@ -3,3 +3,6 @@ docker/cache/*
 !docker/cache/.gitkeep
 docker/output/*
 !docker/output/.gitkeep
+docker/ssh/authorized_keys
+docker/ssh/id_rsa.pub
+docker/ssh/id_rsa

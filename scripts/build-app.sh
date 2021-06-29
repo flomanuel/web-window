@@ -24,6 +24,8 @@ function fatal() {
   exit 1
 }
 
+clear
+
 divider " starting script "
 
 POSITIONAL=()
@@ -55,7 +57,7 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [[ -z $appName ]]; then
-  appName='electronApp'
+  appName='WebWindow'
 fi
 
 # check if variables are set and valid
@@ -110,6 +112,6 @@ success 'Getting electrons tools for creating .deb-files... \n \n'
 divider
 info "Creating debian package... \n \n"
 cd "$buildPath/$appName-linux-x64/" || fatal "couldn't create debian package ..."
-electron-installer-debian --src "$buildPath/$appName-linux-x64/" --arch amd64 --config /app/debian.json
+electron-installer-debian --src "$buildPath/$appName-linux-x64/" --arch amd64 --config /opt/project/debian.json
 
 success 'Creating debian package... \n \n'

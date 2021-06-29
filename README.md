@@ -2,14 +2,15 @@
   <img src="https://github.com/flomanuel/web-window/blob/87d6689d7c0d92c3e39a5ea2422f521d960d78f6/assets/512x512.png" width='150px' alt="WebWindow logo">
 </p>
 
-<h1 align="center"> WebWindow </h1>
+# WebWindow
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT)
+
+![WebWindow logo](./doc/assets/mainImage.png)
 
 ## Overview
 
 Electron-based application that makes all your favourite webapps run like native apps.
-
 
 It's basically a Chromium browser that opens all added websites in a new window respectively.
 
@@ -19,11 +20,14 @@ You will need
 
 - Docker
 - Docker Compose
-- A Linux distribution that uses [X Window System](https://en.wikipedia.org/wiki/X_Window_System)
 
 ### Setting up the project
 
-Read [this file](./doc/DOCKER.md) for how to set up the project.
+Read [this file](./doc/DOCKER.md) on how to set up the project.
+
+### Debugging the application
+
+Read [this file](./doc/DEBUG.md) on how to debug the project.
 
 ### Building the application (currently only linux 64 Bit )
 
@@ -35,13 +39,13 @@ Execute the bash script [build-app.sh](scripts/build-app.sh) from inside the con
 
 The script expects two parameters:
 
-- path to Project folder `- scp` `-src-code-path` (e.g. `- scp '/app'`)
-- path to build folder `-bp` `--build-path` (The necessary files will be downloaded in this path. The result will also
+- path to Project folder `- scp` `-src-code-path` (e.g. `- scp '/opt/project'`)
+- path to build folder `-bp` `--build-path` (The necessary files will be downloaded in this path. The results will also
   be saved there.) (e.g. `-bp '/output'`)
-- there is another, not required parameter for defining the app name. `-n` or `--app-name` (
+- there is another, optional, parameter for defining the app name. `-n` or `--app-name` (
   e.g. `-n 'WebWindow'`).
 
-The final command could look like this: `bash build-app.sh -scp '/app' -bp '/output' -n 'WebWindow'`
+The final command could look like this: `bash build-app.sh -scp '/opt/project' -bp '/output' -n 'WebWindow'`
 
 **! Don't use relative paths since the bash script changes directories !**
 
@@ -53,7 +57,7 @@ The license for this project can be found [here](./LICENSE).
 
 ### Third-party Libraries
 
-This project builds upon open source libraries. Please see each projects' Terms of use when using the provided code in
+This project builds upon open source libraries. Please see each projects' terms of use when using the provided code in
 this repository.
 
 ### Picture credits

@@ -4,9 +4,12 @@ services:
     build: .
     privileged: true
     environment:
-      - DISPLAY=unix$DISPLAY
+      DISPLAY: "unix$DISPLAY"
+    ports:
+    - "22:22"
+    user: "1000:1000"
     volumes:
-      - ./:/app
+      - ./:/opt/project
       - ./docker/cache/:/root/.cache/
       - ./docker/output/:/output/
       - /tmp/.X11-unix:/tmp/.X11-unix
