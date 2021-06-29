@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://github.com/flomanuel/web-window/blob/87d6689d7c0d92c3e39a5ea2422f521d960d78f6/assets/512x512.png" width='150px' alt="WebWindow logo">
-</p>
-
 # WebWindow
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT)
