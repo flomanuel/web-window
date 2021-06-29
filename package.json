@@ -8,10 +8,12 @@
     "webapp",
     "wrapper",
     "linux",
-    "native",
     "application",
     "app",
-    "WebWindow"
+    "webwindow",
+    "website",
+    "desktop-app",
+    "desktop"
   ],
   "author": {
     "name": "flomanuel",
