@@ -1,13 +1,24 @@
-const {BrowserWindow, app} = require('electron');
+const {BrowserWindow} = require('electron');
 const path = require('path');
 
 class ExternalWebsiteController {
+    get title() {
+        return this._title !== '' && this._title !== undefined ? this._title : 'Element Title';
+    }
 
-   constructor(externalUrl, iconPath, title) {
+    set title(value) {
+        this._title = value;
+    }
+
+    constructor(externalUrl, iconPath, title) {
         this.externalUrl = externalUrl;
         this.iconPath = iconPath;
         this.title = title;
-        this.browserWindowSettings = {
+        this.init();
+    }
+
+    async init() {
+        this.win = new BrowserWindow({
             x: 100,
             y: 100,
             width: 1400,
@@ -20,12 +31,7 @@ class ExternalWebsiteController {
                 spellcheck: true
             },
             skipTaskbar: true
-        }
-        this.init();
-    }
-
-    async init() {
-        this.win = new BrowserWindow(this.browserWindowSettings);
+        });
 
         this.win.webContents.on('dom-ready', () => {
             this.show();
@@ -60,10 +66,6 @@ class ExternalWebsiteController {
     show() {
         this.win.show();
         this.win.focus();
-    }
-
-    cleanupAndQuit() {
-        app.exit(0);
     }
 }
 
