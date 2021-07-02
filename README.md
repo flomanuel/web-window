@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT)
 
-![WebWindow logo](./doc/assets/mainImage.png)
+![WebWindow logo](doc/assets/mainImage.png)
 
 ## Overview
 
@@ -41,7 +41,7 @@ The script expects two parameters:
 - there is another, optional, parameter for defining the app name. `-n` or `--app-name` (
   e.g. `-n 'WebWindow'`).
 
-The final command could look like this: `bash build-app.sh -scp '/opt/project' -bp '/output' -n 'WebWindow'`
+The final command could look like this: `/bin/bash build-app.sh -scp '/opt/project' -bp '/output' -n 'WebWindow'`
 
 **! Don't use relative paths since the bash script changes directories !**
 
@@ -61,5 +61,7 @@ this repository.
 This project uses different images. Please see each images' license when using them.
 
 - [Microsoft OneNote icon. Edited: changed aspect ratio to 1:1.](https://commons.wikimedia.org/wiki/File:Microsoft_Office_OneNote_(2019%E2%80%93present).svg) (
-  last accessed 04.05.2020 22:51)
-- [Microsoft To Do icon](https://commons.wikimedia.org/wiki/File:To_Do.svg) (last accessed 04.05.2020 22:51)
+  last accessed 04.05.2021 22:51)
+- [Microsoft To Do icon](https://commons.wikimedia.org/wiki/File:To_Do.svg) (last accessed 04.05.2021 22:51)
+- [Window emoji used for WebWindows icon and logo was designed by OpenMoji – the open-source emoji and icon project. License: CC BY-SA 4.0](https://github.com/hfg-gmuend/openmoji) (
+  last accessed 03.06.2021 00:21))

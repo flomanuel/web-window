@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="101.80396mm"
+   height="101.80338mm"
+   viewBox="0 0 101.80396 101.80338"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (1:1.1+202105261517+ce6663b3b7)"
+   sodipodi:docname="icon_colour.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.77771465"
+     inkscape:cx="4.5003653"
+     inkscape:cy="283.52301"
+     inkscape:window-width="2488"
+     inkscape:window-height="1376"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient23325"
+       id="linearGradient23327"
+       x1="107.27936"
+       y1="190.16356"
+       x2="107.27936"
+       y2="273.40851"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(152.35104,-141.10881)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient23325">
+      <stop
+         style="stop-color:#18a2eb;stop-opacity:1"
+         offset="0"
+         id="stop23321" />
+      <stop
+         style="stop-color:#e6f5fe;stop-opacity:1"
+         offset="1"
+         id="stop23323" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21196"
+       id="linearGradient21198"
+       x1="108.55039"
+       y1="247.90742"
+       x2="108.61869"
+       y2="276.67865"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(151.0117,-144.37896)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient21196">
+      <stop
+         style="stop-color:#6dea18;stop-opacity:1"
+         offset="0"
+         id="stop21192" />
+      <stop
+         style="stop-color:#326709;stop-opacity:1"
+         offset="1"
+         id="stop21194" />
+    </linearGradient>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath27884">
+      <path
+         style="display:none;fill:#010100;fill-opacity:1;stroke:none;stroke-width:0.427679px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 129.68961,51.103994 -0.48464,0.482413 c 0,0 2.89967,2.336274 3.19165,2.639612 0.29196,0.303341 2.49718,-1.643378 2.49718,-1.643378 z"
+         id="path27886" />
+      <path
+         id="lpe_path-effect27888"
+         style="fill:#010100;fill-opacity:1;stroke:none;stroke-width:0.427679px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         class="powerclip"
+         d="M 42.210293,36.285 H 154.55573 V 148.68012 H 42.210293 Z m 87.479317,14.818994 -0.48464,0.482413 c 0,0 2.89967,2.336274 3.19165,2.639612 0.29196,0.303341 2.49718,-1.643378 2.49718,-1.643378 z" />
+    </clipPath>
+    <inkscape:path-effect
+       effect="powerclip"
+       id="path-effect27888"
+       is_visible="true"
+       lpeversion="1"
+       inverse="true"
+       flatten="false"
+       hide_clip="false"
+       message="Use fill-rule evenodd on &lt;b&gt;fill and stroke&lt;/b&gt; dialog if no flatten result after convert clip to paths." />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath20245">
+      <rect
+         style="display:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.86409;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect20247"
+         width="81.026413"
+         height="24.61582"
+         x="56.611431"
+         y="79.345039" />
+      <path
+         id="lpe_path-effect20249"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.86409;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         class="powerclip"
+         d="M 42.210293,36.285 H 154.55573 V 148.68012 H 42.210293 Z M 56.611431,79.345039 V 103.96086 H 137.63784 V 79.345039 Z" />
+    </clipPath>
+    <inkscape:path-effect
+       effect="powerclip"
+       id="path-effect20249"
+       is_visible="true"
+       lpeversion="1"
+       inverse="true"
+       flatten="false"
+       hide_clip="false"
+       message="Use fill-rule evenodd on &lt;b&gt;fill and stroke&lt;/b&gt; dialog if no flatten result after convert clip to paths." />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1426">
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 58.315474,-59.697186 -5.620311,-6.385219 -0.08696,-64.864745 3.54488,-1.41778 26.877616,22.92389 -24.103005,49.575656 z"
+         id="path1428"
+         sodipodi:nodetypes="ccccccc" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2237">
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 125.33033,-60.663018 7.01309,-7.526515 -1.43139,-27.724063 4.72473,-31.799694 -3.81001,-1.60873 -4.43585,-4.72907 -28.93728,19.83977 17.75423,55.103337 z"
+         id="path2239" />
+    </clipPath>
+    <rect
+       x="200.52919"
+       y="285.61493"
+       width="478.77115"
+       height="183.19897"
+       id="rect6951-7" />
+    <rect
+       x="200.52919"
+       y="285.61493"
+       width="478.77115"
+       height="183.19897"
+       id="rect6951-7-89" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-63.631639,-73.446746)">
+    <g
+       id="g1598"
+       transform="translate(-126.99878,-3.6087124)">
+      <g
+         id="g1568"
+         transform="translate(-18.251364,37.106125)">
+        <rect
+           x="218.07417"
+           y="48.881741"
+           rx="1.5338356"
+           width="83.675125"
+           height="83.675125"
+           fill="#92d3f5"
+           id="rect34"
+           style="display:inline;fill:url(#linearGradient23327);fill-opacity:1;stroke-width:1.95617"
+           inkscape:export-filename="/media/florian/truenas/Florian/Projekte/Programmierung/2021/web-view/logo/mainImage.png"
+           inkscape:export-xdpi="278.75189"
+           inkscape:export-ydpi="278.75189" />
+        <path
+           style="display:inline;fill:url(#linearGradient21198);fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 210.6243,114.26071 c 0,0 10.45396,2.23046 17.92674,-2.21284 9.17427,-5.455 13.2592,-6.56202 22.83692,-8.59671 5.57278,-1.18389 16.89071,-0.0419 25.712,2.33822 8.57916,2.31478 14.68476,5.7551 22.99454,7.21308 7.48311,1.31295 8.17435,3.52771 8.17435,3.52771 l -1.44911,15.90918 -90.47838,0.18166 -5.50262,-0.32052 z"
+           id="path20498"
+           sodipodi:nodetypes="cssssccccc"
+           inkscape:export-filename="/media/florian/truenas/Florian/Projekte/Programmierung/2021/web-view/logo/mainImage.png"
+           inkscape:export-xdpi="278.75189"
+           inkscape:export-ydpi="278.75189" />
+        <circle
+           style="display:inline;fill:#fcff49;fill-opacity:1;stroke:none;stroke-width:2.60969;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="path23841"
+           cx="295.40866"
+           cy="54.972134"
+           inkscape:export-filename="/media/florian/truenas/Florian/Projekte/Programmierung/2021/web-view/logo/mainImage.png"
+           inkscape:export-xdpi="278.75189"
+           inkscape:export-ydpi="278.75189"
+           r="13.771064" />
+        <g
+           id="g20281"
+           transform="matrix(0.6163948,-0.05276711,0.05276711,0.6163948,190.64112,39.215023)"
+           clip-path="url(#clipPath27884)"
+           inkscape:path-effect="#path-effect27888"
+           inkscape:export-filename="/media/florian/truenas/Florian/Projekte/Programmierung/2021/web-view/logo/mainImage.png"
+           inkscape:export-xdpi="278.75189"
+           inkscape:export-ydpi="278.75189"
+           style="display:inline">
+          <g
+             id="g20243"
+             clip-path="url(#clipPath20245)"
+             inkscape:path-effect="#path-effect20249">
+            <circle
+               style="fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               id="path930"
+               r="49.672718"
+               cy="92.457718"
+               cx="98.383011"
+               d="M 148.05573,92.457718 A 49.672718,49.672718 0 0 1 98.383011,142.13044 49.672718,49.672718 0 0 1 48.710293,92.457718 49.672718,49.672718 0 0 1 98.383011,42.785 49.672718,49.672718 0 0 1 148.05573,92.457718 Z" />
+            <ellipse
+               style="fill:none;stroke:#000000;stroke-width:2.43562;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               id="path930-7"
+               cx="98.237305"
+               cy="92.507408"
+               rx="32.55621"
+               ry="49.954906"
+               d="M 130.79351,92.507408 A 32.55621,49.954906 0 0 1 98.237305,142.46231 32.55621,49.954906 0 0 1 65.681095,92.507408 32.55621,49.954906 0 0 1 98.237305,42.552502 32.55621,49.954906 0 0 1 130.79351,92.507408 Z" />
+            <ellipse
+               style="fill:none;stroke:#000000;stroke-width:2.43562;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               id="path930-7-6"
+               cx="29.855215"
+               cy="-98.024429"
+               rx="32.55621"
+               ry="49.954906"
+               transform="rotate(90)"
+               clip-path="url(#clipPath1426)"
+               d="m 62.411425,-98.024429 a 32.55621,49.954906 0 0 1 -32.55621,49.954906 32.55621,49.954906 0 0 1 -32.5562095,-49.954906 32.55621,49.954906 0 0 1 32.5562095,-49.954911 32.55621,49.954906 0 0 1 32.55621,49.954911 z" />
+            <ellipse
+               style="fill:none;stroke:#000000;stroke-width:2.43562;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               id="ellipse1180"
+               cx="153.81494"
+               cy="-97.946198"
+               rx="32.55621"
+               ry="49.954906"
+               transform="rotate(90)"
+               clip-path="url(#clipPath2237)"
+               d="m 186.37115,-97.946198 a 32.55621,49.954906 0 0 1 -32.55621,49.954907 32.55621,49.954906 0 0 1 -32.55621,-49.954907 32.55621,49.954906 0 0 1 32.55621,-49.954902 32.55621,49.954906 0 0 1 32.55621,49.954902 z" />
+          </g>
+          <text
+             xml:space="preserve"
+             transform="matrix(0.27522198,0,0,0.26458333,-3.9747303,-6.3540554)"
+             id="text6949"
+             style="font-style:normal;font-weight:normal;font-size:140px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6951-7);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
+               x="200.5293"
+               y="409.48242"
+               id="tspan1037">www</tspan></text>
+        </g>
+        <g
+           id="g67"
+           transform="matrix(1.9561735,0,0,1.9561735,189.40299,20.469953)"
+           inkscape:export-filename="/media/florian/truenas/Florian/Projekte/Programmierung/2021/web-view/logo/mainImage.png"
+           inkscape:export-xdpi="278.75189"
+           inkscape:export-ydpi="278.75189"
+           style="display:inline">
+          <g
+             id="line-supplement">
+            <line
+               x1="36.398048"
+               x2="36.398048"
+               y1="13.755845"
+               y2="56.844242"
+               fill="none"
+               stroke="#a57939"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               stroke-width="2.03231"
+               id="line40"
+               style="display:inline" />
+            <line
+               x1="15.101302"
+               x2="57.876198"
+               y1="28.396986"
+               y2="28.396986"
+               fill="none"
+               stroke="#a57939"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               stroke-width="2.0249"
+               id="line42"
+               style="display:inline" />
+          </g>
+          <g
+             id="color">
+            <path
+               fill="#a57939"
+               d="M 60.94,62 H 11.0176 a 1.06,1.06 0 0 1 -1.06,-1.06 V 11.0179 a 1.06,1.06 0 0 1 1.06,-1.06 H 60.94 a 1.06,1.06 0 0 1 1.06,1.06 V 60.94 A 1.06,1.06 0 0 1 60.94,62 Z M 16.5733,56.3877 H 55.228 a 1.06,1.06 0 0 0 1.06,-1.06 V 16.6722 a 1.06,1.06 0 0 0 -1.06,-1.06 H 16.5733 a 1.06,1.06 0 0 0 -1.06,1.06 v 38.6556 a 1.06,1.06 0 0 0 1.06,1.0599 z"
+               id="path38" />
+          </g>
+          <g
+             id="line">
+            <line
+               x1="61"
+               x2="10.9583"
+               y1="61"
+               y2="61"
+               fill="none"
+               stroke="#000000"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               stroke-width="2"
+               id="line45" />
+            <polyline
+               fill="none"
+               stroke="#000000"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               stroke-width="2"
+               points="10.958 57.168 10.958 10.958 61 10.958 61 57.168"
+               id="polyline47" />
+          </g>
+        </g>
+        <text
+           xml:space="preserve"
+           transform="matrix(0.16964539,-0.01452267,0.0139613,0.16308779,207.28706,33.838073)"
+           id="text6949-6"
+           style="font-style:normal;font-weight:normal;font-size:140px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6951-7-89);display:inline;fill:#000000;fill-opacity:1;stroke:none"
+           inkscape:export-filename="/media/florian/truenas/Florian/Projekte/Programmierung/2021/web-view/logo/mainImage.png"
+           inkscape:export-xdpi="278.75189"
+           inkscape:export-ydpi="278.75189"><tspan
+             x="200.5293"
+             y="409.48242"
+             id="tspan1039">w</tspan></text>
+        <path
+           style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 254.55248,120.83227 c 0,0 3.49049,-0.0204 3.96831,-0.10758 0.47781,-0.0871 3.00605,-0.12087 4.17678,-0.67317 1.17073,-0.5523 1.08264,1.68805 1.08264,1.68805 0,0 -1.91773,0.70711 -5.62829,0.89044 -3.71056,0.18333 -3.59944,-1.79777 -3.59944,-1.79777 z"
+           id="path91838"
+           sodipodi:nodetypes="ccscscc"
+           inkscape:export-filename="/media/florian/truenas/Florian/Projekte/Programmierung/2021/web-view/logo/mainImage.png"
+           inkscape:export-xdpi="278.75189"
+           inkscape:export-ydpi="278.75189" />
+        <path
+           style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 271.16981,73.891743 c 0,0 1.87107,4.289812 1.90839,4.506002 0.0373,0.21618 1.462,-0.3478 1.462,-0.3478 0,0 -1.5287,-3.917822 -1.83791,-4.453912 -0.3092,-0.53609 -1.53248,0.29576 -1.53248,0.29576 z"
+           id="path92491"
+           sodipodi:nodetypes="cscscc"
+           inkscape:export-filename="/media/florian/truenas/Florian/Projekte/Programmierung/2021/web-view/logo/mainImage.png"
+           inkscape:export-xdpi="278.75189"
+           inkscape:export-ydpi="278.75189" />
+        <path
+           style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 280.56805,73.876793 c 0,0 2.49992,4.169412 2.55875,4.421132 0.0588,0.25172 1.91491,-0.26032 1.91491,-0.26032 0,0 -2.03576,-3.980082 -2.41601,-4.380932 -0.38135,-0.40202 -2.05765,0.22013 -2.05765,0.22013 z"
+           id="path93992"
+           sodipodi:nodetypes="cscscc"
+           inkscape:export-filename="/media/florian/truenas/Florian/Projekte/Programmierung/2021/web-view/logo/mainImage.png"
+           inkscape:export-xdpi="278.75189"
+           inkscape:export-ydpi="278.75189" />
+        <path
+           style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 262.74672,63.673193 c -1.13523,-0.7121 -3.31824,-1.84156 -4.54525,-2.19753 -0.7071,-0.20514 -1.26614,-1.95096 -1.26614,-1.95096 0,0 1.49856,-0.0742 1.58911,-0.078 0.25666,-0.004 4.10053,0.46916 4.69217,0.72235 0.59164,0.2532 -0.3227,1.52722 -0.3227,1.52722 l -0.1994,0.31799 0.30843,0.78219 c 0,0 -0.1227,0.72245 -0.25622,0.87674 z"
+           id="path95609"
+           sodipodi:nodetypes="csccscccc"
+           inkscape:export-filename="/media/florian/truenas/Florian/Projekte/Programmierung/2021/web-view/logo/mainImage.png"
+           inkscape:export-xdpi="278.75189"
+           inkscape:export-ydpi="278.75189" />
+      </g>
+    </g>
+  </g>
+</svg>
