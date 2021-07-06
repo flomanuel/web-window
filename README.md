@@ -1,8 +1,6 @@
-# WebWindow
+![WebWindow logo](doc/assets/mainImage.png)
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT)
-
-![WebWindow logo](doc/assets/mainImage.png)
 
 ## Overview
 
@@ -64,4 +62,6 @@ This project uses different images. Please see each images' license when using t
   last accessed 04.05.2021 22:51)
 - [Microsoft To Do icon](https://commons.wikimedia.org/wiki/File:To_Do.svg) (last accessed 04.05.2021 22:51)
 - [Window emoji used for WebWindows icon and logo was designed by OpenMoji – the open-source emoji and icon project. License: CC BY-SA 4.0](https://github.com/hfg-gmuend/openmoji) (
-  last accessed 03.06.2021 00:21))
+  last accessed 03.06.2021 00:21)
+- [All other icons / emojis were designed by OpenMoji – the open-source emoji and icon project. License: CC BY-SA 4.0](https://github.com/hfg-gmuend/openmoji) (
+  last accessed 04.06.2021 10:36)

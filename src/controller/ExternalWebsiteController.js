@@ -1,22 +1,30 @@
 const {BrowserWindow} = require('electron');
-const path = require('path');
+const AbstractController = require('./AbstractController');
 
-class ExternalWebsiteController {
-    get title() {
-        return this._title !== '' && this._title !== undefined ? this._title : 'Element Title';
-    }
-
-    set title(value) {
-        this._title = value;
-    }
-
+class ExternalWebsiteController extends AbstractController {
+    /**
+     *
+     * @param externalUrl
+     * @param iconPath
+     * @param title
+     * @returns {boolean|Promise<void>}
+     */
     constructor(externalUrl, iconPath, title) {
+        super(iconPath, title);
         this.externalUrl = externalUrl;
-        this.iconPath = iconPath;
-        this.title = title;
-        this.init();
+        if (this.validateData()) {
+            this.init().catch(e => {
+                throw `Error creating ExternalWebsiteController: ${e}`
+            });
+        } else {
+            return false;
+        }
     }
 
+    /**
+     *
+     * @returns {Promise<void>}
+     */
     async init() {
         this.win = new BrowserWindow({
             x: 100,
@@ -26,46 +34,27 @@ class ExternalWebsiteController {
             autoHideMenuBar: true,
             show: false,
             title: this.title,
-            icon: path.join(__dirname, this.iconPath),
+            icon: this._iconPath,
             webPreferences: {
                 spellcheck: true
             },
             skipTaskbar: true
         });
-
-        this.win.webContents.on('dom-ready', () => {
-            this.show();
-        });
-
-        this.win.on('close', (e) => {
-            if (this.win.isVisible()) {
-                e.preventDefault();
-                this.win.minimize();
-            }
-        });
-
-        this.win.on('closed', () => {
-            this.win = null
-        });
-
+        super.init();
         await this.win.loadURL(this.externalUrl);
     }
 
-    toggleWindow() {
-        if (!this.win.isMinimized()) {
-            if (!this.win.isFocused()) {
-                this.win.focus();
-            } else {
-                this.win.minimize();
-            }
-        } else {
-            this.show();
+    /**
+     *
+     * @returns {string}
+     */
+    validateData() {
+        if (!this.externalUrl) {
+            throw 'External URL not specified.';
+        } else if (!this.title) {
+            throw 'Title not specified.';
         }
-    }
-
-    show() {
-        this.win.show();
-        this.win.focus();
+        return this.externalUrl && this.title;
     }
 }
 
