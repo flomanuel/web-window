@@ -102,7 +102,7 @@ success "Copying files to build path... \n"
 divider
 info "Installing node modules... \n"
 cd "$buildPath/srcCode" || fatal "Couldn't switch into source code folder."
-npm install --production
+npm install || fatal "Couldn't install node modules."
 success "Installing node modules... \n"
 
 # switch to build path
