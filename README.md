@@ -31,13 +31,12 @@ Getting it to work under macOS / Windows shouldn't be a lot of work.
 
 Execute the bash script [build-app.sh](scripts/build-app.sh) from inside the container **as root user**.
 
-The script expects two parameters:
+The script accepts some optional parameters:
 
-- path to Project folder `- scp` `-src-code-path` (e.g. `- scp '/opt/project'`)
-- path to build folder `-bp` `--build-path` (The necessary files will be downloaded in this path. The results will also
-  be saved there.) (e.g. `-bp '/output'`)
-- there is another, optional, parameter for defining the app name. `-n` or `--app-name` (
-  e.g. `-n 'WebWindow'`).
+- Path to Project folder `- scp` `-src-code-path` (e.g. `- scp '/opt/project'`). Defaults to _/opt/project_.
+- Path to build folder `-bp` `--build-path` (The necessary files will be downloaded in this path. The results will also
+  be saved there.) (e.g. `-bp '/output'`). Defaults to _/output_. If altered, debian.json must be adjusted, too.
+- Defining the app name `-n` `--app-name` (e.g. `-n 'WebWindow'`). Defaults to _WebWindow_.
 
 The final command could look like this: `/bin/bash build-app.sh -scp '/opt/project' -bp '/output' -n 'WebWindow'`
 

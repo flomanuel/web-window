@@ -1,6 +1,6 @@
 {
   "name": "web-window",
-  "version": "4.0.0-alpha",
+  "version": "4.0.1-alpha",
   "description": "Electron-based linux application that makes all your favourite webapps run like native apps.",
   "keywords": [
     "electron",
