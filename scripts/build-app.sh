@@ -86,13 +86,25 @@ else
   success "Checking if npm is installed... \n"
 fi
 
-# copy necessary source code into build path
-divider
-info "Copying files to build path... \n"
-if [ ! -d "$buildPath/srcCode" ]; then
-  mkdir "$buildPath/srcCode" || fatal "Couldn't create source code folder."
+#clean build path if necessary, create folder structure
+info "Cleaning build path if necessary... \n"
+if [ -d "$buildPath" ]; then
+  if [ -z "$(ls -A $buildPath)" ]; then
+      info "    Path not empty. Deleting content... \n"
+      rm -rf "${buildPath:?}/*" || fatal "Couldn't delete content."
+      success "    Path not empty. Deleting content... \n"
+  fi
 fi
-cp -r "$srcCodePath/src" "$buildPath/srcCode/" || fatal "Couldn't copy source code into the build directory."
+success "Cleaning build path if necessary... \n"
+
+divider
+info "Creating folder structure inside build path... \n"
+mkdir -p "$buildPath/srcCode/dist" || fatal "Couldn't create folder structure inside build path."
+success "Creating folder structure inside build path... \n"
+
+# copy necessary source code into build path
+info "Copying files to build path... \n"
+cp -r "$srcCodePath/dist/" "$buildPath/srcCode/dist" || fatal "Couldn't copy source code into the build directory."
 cp "$srcCodePath/package.json" "$buildPath/srcCode/" || fatal "Couldn't copy package.json into the build directory."
 cp "$srcCodePath/package-lock.json" "$buildPath/srcCode/" || fatal "Couldn't copy package-lock.json into the build directory."
 cp "$srcCodePath/LICENSE" "$buildPath/srcCode/" || fatal "Couldn't copy LICENSE into the build directory."

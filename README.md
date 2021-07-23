@@ -35,7 +35,8 @@ The script accepts some optional parameters:
 
 - Path to Project folder `- scp` `-src-code-path` (e.g. `- scp '/opt/project'`). Defaults to _/opt/project_.
 - Path to build folder `-bp` `--build-path` (The necessary files will be downloaded in this path. The results will also
-  be saved there.) (e.g. `-bp '/output'`). Defaults to _/output_. If altered, debian.json must be adjusted, too.
+  be saved there.) (e.g. `-bp '/output'`). Defaults to _/output_. Watch out, all preexisting content gets deleted whilst
+  running the build script. If altered, debian.json must be adjusted, too.
 - Defining the app name `-n` `--app-name` (e.g. `-n 'WebWindow'`). Defaults to _WebWindow_.
 
 The final command could look like this: `/bin/bash build-app.sh -scp '/opt/project' -bp '/output' -n 'WebWindow'`

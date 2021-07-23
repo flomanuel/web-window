@@ -6,3 +6,5 @@ docker/output/*
 docker/ssh/authorized_keys
 docker/ssh/id_rsa.pub
 docker/ssh/id_rsa
+dist/*
+!dist/.gitkeep
