@@ -27,6 +27,7 @@
     "url": "https://github.com/flomanuel/web-window/issues"
   },
   "main": "dist/main.js",
+  "private": true,
   "scripts": {
     "start": "electron dist/main.js"
   },
