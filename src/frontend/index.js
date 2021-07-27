@@ -1,3 +1,6 @@
+import "./styles/index.scss";
+
+
 class EntryRenderer {
     constructor() {
         this.imgPath = null;
@@ -20,8 +23,8 @@ class EntryRenderer {
         });
 
         const wsFormNewEntryButton = document.getElementById('ww_button');
-        wsFormNewEntryButton.addEventListener('click', (e) => {
-            this.saveNewEntry(e, wsFormNewEntryButton);
+        wsFormNewEntryButton.addEventListener('click', () => {
+            this.saveNewEntry();
         });
 
         const wsClearDataButton = document.getElementById('clearData');
@@ -45,10 +48,10 @@ class EntryRenderer {
             e.preventDefault();
         }, false);
         wsFormNewEntryImg.addEventListener('drop', (e) => {
-            this.persistIconPath(e, wsFormNewEntryImg);
+            this.persistIconPath(e);
         }, false);
         wsFormNewEntryImg.addEventListener('dragdrop', (e) => {
-            this.persistIconPath(e, wsFormNewEntryImg);
+            this.persistIconPath(e);
         }, false);
     }
 
@@ -76,12 +79,7 @@ class EntryRenderer {
         return temp;
     }
 
-    /**
-     *
-     * @param e
-     * @param actionTarget
-     */
-    saveNewEntry(e, actionTarget) {
+    saveNewEntry() {
         const title = document.getElementById('ww_title').value;
         const url = document.getElementById('ww_url').value;
         window.electron.saveNewEntry(title, url, this.imgPath).then((value) => {
@@ -96,9 +94,8 @@ class EntryRenderer {
     /**
      *
      * @param e
-     * @param actionTarget
      */
-    persistIconPath(e, actionTarget) {
+    persistIconPath(e) {
         e.stopPropagation();
         e.preventDefault();
         const dt = e.dataTransfer;

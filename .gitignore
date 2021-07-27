@@ -1,10 +1,16 @@
-node_modules/*
+.idea/copyright/*
+
 docker/cache/*
 !docker/cache/.gitkeep
+
 docker/output/*
 !docker/output/.gitkeep
+
 docker/ssh/authorized_keys
 docker/ssh/id_rsa.pub
 docker/ssh/id_rsa
+
+node_modules/*
+
 dist/*
 !dist/.gitkeep

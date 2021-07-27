@@ -21,4 +21,4 @@ npm dependencies (`npm i`) as user _developer_.
 
 ## Running the application
 
-You still have to be inside the container. From the projects main folder run `npm run start`.
+You still have to be inside the container. From the projects main folder run `npm run el_start`.

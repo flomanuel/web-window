@@ -1,5 +1,5 @@
 const {contextBridge, ipcRenderer} = require('electron')
-const wwEvents = require('../../constants/wwEvents')
+const wwEvents = require('../constants/wwEvents')
 
 class SettingsPreload {
     init() {
