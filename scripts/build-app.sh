@@ -84,24 +84,40 @@ else
 fi
 
 #if necessary clean build path, create folder structure
-info "Cleaning build path if necessary... \n"
 if [ -d "$buildPath" ]; then
-  if [ -z "$(ls -A $buildPath)" ]; then
+info "Cleaning build path... \n"
+  if [ -z "$(ls $buildPath)" ]; then
     info "    Path not empty. Deleting content... \n"
-    rm -rf "${buildPath:?}/*" || fatal "Couldn't delete content."
+    rm -rf "${buildPath:?}/*" || fatal "    Couldn't delete content."
     success "    Path not empty. Deleting content... \n"
   fi
+success "Cleaning build path... \n"
 fi
-success "Cleaning build path if necessary... \n"
 
 divider
 info "Creating folder structure inside build path... \n"
 mkdir -p "$buildPath/srcCode/dist" || fatal "Couldn't create folder structure inside build path."
 success "Creating folder structure inside build path... \n"
 
+#if necessary clean dist folder in source code path
+if [ -d "$srcCodePath" ]; then
+info "Cleaning dist folder in source code path... \n"
+  if [ -z "$(ls $srcCodePath/dist)" ]; then
+    info "    Path not empty. Deleting content... \n"
+    rm -rf "${$srcCodePath:?}/dist" || fatal "    Couldn't delete content."
+    success "    Path not empty. Deleting content... \n"
+  fi
+success "Cleaning dist folder in source code path... \n"
+fi
+
+info "Building webpack bundles... \n"
+cd $srcCodePath || fatal "    Source code path not existing."
+npm run wp_build || fatel "    Couldn't build webpack bundles."
+success "Building webpack bundles... \n"
+
 # copy necessary source code into build path
 info "Copying files to build path... \n"
-cp -r "$srcCodePath/dist/" "$buildPath/srcCode/dist" || fatal "Couldn't copy source code into the build directory."
+cp -r "$srcCodePath/dist/*" "$buildPath/srcCode/dist/" || fatal "Couldn't copy source code into the build directory."
 cp "$srcCodePath/package.json" "$buildPath/srcCode/" || fatal "Couldn't copy package.json into the build directory."
 cp "$srcCodePath/package-lock.json" "$buildPath/srcCode/" || fatal "Couldn't copy package-lock.json into the build directory."
 cp "$srcCodePath/LICENSE" "$buildPath/srcCode/" || fatal "Couldn't copy LICENSE into the build directory."
