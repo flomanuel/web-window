@@ -27,7 +27,7 @@
   "overrides": [
     {
       "files": [
-        "src/frontend/preload.js",
+        "src/frontend/**",
         "src/main.js",
         "src/controller/**",
         "src/constants/**",

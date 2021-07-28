@@ -67,7 +67,7 @@ class SettingsController extends AbstractController {
     saveNewSettingsEntry(args) {
         const userSettings = electronSettings.getSync('user');
         let iconPath = '';
-        if (typeof args.imgPath === 'string') {
+        if (typeof args.imgPath === 'string' && args.imgPath !== '') {
             iconPath = `data:image/png;base64,${this.base64Encode(args.imgPath)}`;
         }
         userSettings?.websites.push(
