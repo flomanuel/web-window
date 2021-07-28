@@ -12,8 +12,6 @@ function info() {
   printf "\e[1;33m[i]\e[0m $@ \n"
 }
 
-# "\e[0;31m \e[0m"
-
 function divider() {
   printf "\e[48;5;027m================$@================\e[0m \n"
 }
@@ -80,19 +78,18 @@ fi
 info "Checking if npm is installed... \n"
 whereIsNpm=$(whereis npm)
 if [[ $whereIsNpm == 'npm:' ]]; then
-  error "npm is not installed. Stopping script..."
-  exit 1
+  fatal "npm is not installed. \n "
 else
   success "Checking if npm is installed... \n"
 fi
 
-#clean build path if necessary, create folder structure
+#if necessary clean build path, create folder structure
 info "Cleaning build path if necessary... \n"
 if [ -d "$buildPath" ]; then
   if [ -z "$(ls -A $buildPath)" ]; then
-      info "    Path not empty. Deleting content... \n"
-      rm -rf "${buildPath:?}/*" || fatal "Couldn't delete content."
-      success "    Path not empty. Deleting content... \n"
+    info "    Path not empty. Deleting content... \n"
+    rm -rf "${buildPath:?}/*" || fatal "Couldn't delete content."
+    success "    Path not empty. Deleting content... \n"
   fi
 fi
 success "Cleaning build path if necessary... \n"

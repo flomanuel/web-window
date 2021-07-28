@@ -1,7 +1,7 @@
 const {app, Tray, Menu} = require('electron');
+const nativeImage = require('electron').nativeImage
 const ExternalWebsiteController = require('../controller/ExternalWebsiteController');
 const SettingsController = require('../controller/SettingsController');
-const {nativeImage} = require("electron");
 const path = require('path');
 const electronSettings = require('electron-settings');
 const wwEvents = require('../constants/wwEvents');
@@ -10,7 +10,7 @@ class WebWindow {
     constructor() {
         this.externalWebsiteControllers = null;
         this.settings = null;
-        this.appDir = path.dirname(require.main.filename);
+        this.appDir = app.getAppPath();
         this.settingsController = null;
     }
 
@@ -90,12 +90,12 @@ class WebWindow {
     createTray() {
         const menuTemplate = [];
         if (this.externalWebsiteControllers.length > 0) {
-            this.externalWebsiteControllers.forEach(extWebCont => {
+            this.externalWebsiteControllers.forEach(controller => {
                 menuTemplate.push({
-                        label: extWebCont.title,
-                        icon: this.createTrayIcon(extWebCont.iconPath),
+                        label: controller.title,
+                        icon: this.createTrayIcon(controller.iconPath),
                         submenu: [
-                            {label: 'show me', click: () => extWebCont.toggleWindow()},
+                            {label: 'show me', click: () => controller.toggleWindow()},
                         ],
                     },
                 );
@@ -107,13 +107,13 @@ class WebWindow {
             {label: 'settings', click: () => app.emit(wwEvents.SETTINGS_WINDOW_OPENED.toString())},
             {
                 label: 'quit',
-                icon: this.createTrayIcon(path.join(this.appDir, '/assets/icons/close.png')),
+                icon: this.createTrayIcon(path.join(this.appDir, 'assets', 'icons', 'close.png')),
                 click: () => this.cleanupAndQuit()
             },
         );
 
         const context = Menu.buildFromTemplate(menuTemplate);
-        this.tray = new Tray(path.join(this.appDir, '/assets/512x512.png'));
+        this.tray = new Tray(path.join(this.appDir, 'assets', '512x512.png'));
         this.tray.setContextMenu(context);
     }
 

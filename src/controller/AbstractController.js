@@ -1,4 +1,5 @@
 const path = require('path');
+const {app} = require('electron');
 
 class AbstractController {
     /**
@@ -6,7 +7,7 @@ class AbstractController {
      * @returns {string}
      */
     get iconPath() {
-        return this._iconPath !== '' ? this._iconPath : path.join(this.appDir, '/assets/512x512.png');
+        return this._iconPath !== '' ? this._iconPath : path.join(this.appDir, 'assets', '512x512.png');
     }
 
     /**
@@ -39,14 +40,13 @@ class AbstractController {
      * @param title
      */
     constructor(iconPath, title) {
-        this.appDir = path.dirname(require.main.filename);
+        this.appDir = app.getAppPath();
         this.iconPath = iconPath;
         this.title = title;
         this.win = null;
     }
 
     init() {
-        // this.win.setSpellCheckerLanguages(['de-DE', 'en-US']);
         this.win.webContents.on('dom-ready', () => {
             this.show();
         });

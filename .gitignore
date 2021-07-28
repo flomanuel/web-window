@@ -1,5 +1,7 @@
+# WebStorm settings
 .idea/copyright/*
 
+# Docker settings
 docker/cache/*
 !docker/cache/.gitkeep
 
@@ -10,7 +12,7 @@ docker/ssh/authorized_keys
 docker/ssh/id_rsa.pub
 docker/ssh/id_rsa
 
+# Webpack settings
 node_modules/*
-
 dist/*
 !dist/.gitkeep

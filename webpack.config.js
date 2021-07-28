@@ -1,21 +1,23 @@
-const webpack = require('webpack')
+const webpack = require('webpack');
+const path = require('path');
 
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const {extendDefaultPlugins} = require("svgo");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-
-const ESLintPlugin = require('eslint-webpack-plugin')
-const StyleLintPlugin = require('stylelint-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
-const appName = process.env.npm_package_name
-const appVersion = process.env.npm_package_version
-const buildMode = process.env.NODE_ENV
-const isDev = buildMode === 'development'
+const ESLintPlugin = require('eslint-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
-console.info('\n \n============ Building', appName, appVersion, ' ============', '\n')
+const appName = process.env.npm_package_name;
+const appVersion = process.env.npm_package_version;
+const buildMode = process.env.NODE_ENV;
+const isDev = buildMode === 'development';
+
+console.info('\n \n============ Building', appName, appVersion, ' ============', '\n');
 
 
 module.exports = [
@@ -24,10 +26,10 @@ module.exports = [
         mode: buildMode,
         target: 'electron-preload',
 
-        entry: __dirname + '/src/frontend/preload.js',
+        entry: path.join(__dirname, 'src', 'frontend', 'preload.js'),
 
         output: {
-            path: __dirname + "/dist/frontend/",
+            path: path.join(__dirname, 'dist', 'frontend'),
             filename: "preload.js",
         },
         optimization: {
@@ -46,7 +48,7 @@ module.exports = [
         },
         plugins: [
             new ESLintPlugin({
-                files: __dirname + '/src/frontend/preload.js',
+                files: path.join(__dirname, 'src', 'frontend', 'preload.js'),
             }),
             new webpack.DefinePlugin({appName: JSON.stringify(appName)}),
             new webpack.DefinePlugin({appVersion: JSON.stringify(appVersion)}),
@@ -58,11 +60,11 @@ module.exports = [
         devtool: 'source-map',
         target: 'electron-renderer',
 
-        entry: __dirname + '/src/frontend/index.js',
+        entry: path.join(__dirname, 'src', 'frontend', 'index.js'),
 
         output: {
-            path: __dirname + "/dist/frontend/",
-            filename: "index.js",
+            path: path.join(__dirname, 'dist', 'frontend'),
+            filename: "index.js"
         },
 
         module: {
@@ -77,7 +79,7 @@ module.exports = [
                 },
                 {
                     test: /\.(js|jsx)$/,
-                    // exclude: /node_modules/,
+                    exclude: /node_modules/,
                     loader: "babel-loader",
                     options: {presets: ["@babel/env", "@babel/preset-react"]}
                 },
@@ -114,18 +116,18 @@ module.exports = [
         plugins: [
             new ESLintPlugin({
                 extensions: ['js', 'jsx'],
-                files: __dirname + '/src'
+                files: path.join(__dirname, 'src')
             }),
             new StyleLintPlugin({
                 extensions: ['scss'],
-                files: __dirname + '/src'
+                files: path.join(__dirname, 'src')
             }),
             new MiniCssExtractPlugin({
                 filename: "[name].css",
                 chunkFilename: "[id].css",
             }),
             new HtmlWebpackPlugin({
-                template: __dirname + '/src/frontend/index.html',
+                template: path.join(__dirname, 'src', 'frontend', 'index.html'),
                 inject: "head",
                 hash: true
             }),
@@ -165,10 +167,10 @@ module.exports = [
         devtool: 'source-map',
         target: 'electron-main',
 
-        entry: __dirname + '/src/main.js',
+        entry: path.join(__dirname, 'src', 'main.js'),
 
         output: {
-            path: __dirname + "/dist/",
+            path: path.join(__dirname, 'dist'),
             filename: "main.js",
         },
 
@@ -195,9 +197,15 @@ module.exports = [
             ],
         },
         plugins: [
+            new CopyPlugin({
+                patterns: [
+                    // { from: `${__dirname}/src/assets/**/*`, to: './dist/assets/'}
+                    {from: path.join(__dirname, 'src', 'assets'), to: path.join(__dirname, 'dist', 'assets')}
+                ]
+            }),
             new ESLintPlugin({
                 extensions: ['js', 'jsx'],
-                files: __dirname + '/src'
+                files: path.join(__dirname, 'src')
             }),
             new ImageMinimizerPlugin({
                 minimizerOptions: {

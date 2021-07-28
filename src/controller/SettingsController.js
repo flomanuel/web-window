@@ -34,13 +34,13 @@ class SettingsController extends AbstractController {
             icon: this._iconPath,
             webPreferences: {
                 spellcheck: true,
-                preload: path.join(this.appDir, "/frontend/preload.js"),
+                preload: path.join(this.appDir, 'frontend', 'preload.js'),
             },
             skipTaskbar: true
         });
         super.init();
         this.handleIpcRenderRequests();
-        await this.win.loadFile(path.join(this.appDir, "/frontend/index.html"));
+        await this.win.loadFile(path.join(this.appDir, 'frontend', 'index.html'));
     }
 
     handleIpcRenderRequests() {
