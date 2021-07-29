@@ -7,7 +7,7 @@ class AbstractController {
      * @returns {string}
      */
     get iconPath() {
-        return this._iconPath !== '' ? this._iconPath : path.join(this.appDir, 'assets', '512x512.png');
+        return this._iconPath !== '' ? this._iconPath : path.join(this.appDir, 'dist', 'assets', '512x512.png');
     }
 
     /**
