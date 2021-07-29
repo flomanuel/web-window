@@ -31,7 +31,7 @@ class SettingsController extends AbstractController {
             autoHideMenuBar: true,
             show: false,
             title: this.title,
-            icon: this._iconPath,
+            // icon: this.iconPath,
             webPreferences: {
                 spellcheck: true,
                 preload: path.join(this.appDir, 'frontend', 'preload.js'),

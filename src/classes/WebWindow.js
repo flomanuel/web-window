@@ -42,10 +42,10 @@ class WebWindow {
     initApp() {
         app.whenReady().then(async () => {
             await this.createControllers();
+            this.createTray();
             if (this.externalWebsiteControllers.length <= 0) {
                 app.emit(wwEvents.SETTINGS_WINDOW_OPENED.toString());
             }
-            this.createTray();
         })
 
         app.on('window-all-closed', () => {
@@ -93,7 +93,7 @@ class WebWindow {
             this.externalWebsiteControllers.forEach(controller => {
                 menuTemplate.push({
                         label: controller.title,
-                        icon: this.createTrayIcon(controller.iconPath),
+                        // icon: controller.iconPath,
                         submenu: [
                             {label: 'show me', click: () => controller.toggleWindow()},
                         ],
@@ -107,13 +107,14 @@ class WebWindow {
             {label: 'settings', click: () => app.emit(wwEvents.SETTINGS_WINDOW_OPENED.toString())},
             {
                 label: 'quit',
-                icon: this.createTrayIcon(path.join(this.appDir, 'assets', 'icons', 'close.png')),
+                // icon: path.join(this.appDir, 'assets', 'icons', 'close.png'),
                 click: () => this.cleanupAndQuit()
             },
         );
 
         const context = Menu.buildFromTemplate(menuTemplate);
-        this.tray = new Tray(path.join(this.appDir, 'assets', '512x512.png'));
+        const logoPath = path.join(this.appDir, 'assets', '512x512.png');
+        this.tray = new Tray(this.createTrayIcon(logoPath));
         this.tray.setContextMenu(context);
     }
 

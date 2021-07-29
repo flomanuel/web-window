@@ -52,7 +52,11 @@ module.exports = [
             }),
             new webpack.DefinePlugin({appName: JSON.stringify(appName)}),
             new webpack.DefinePlugin({appVersion: JSON.stringify(appVersion)}),
-        ]
+        ],
+        externalsPresets: {
+            node: true,
+            electronPreload: true
+        }
     },
     // edit files for render process
     {
@@ -159,7 +163,11 @@ module.exports = [
             }),
             new webpack.DefinePlugin({appName: JSON.stringify(appName)}),
             new webpack.DefinePlugin({appVersion: JSON.stringify(appVersion)}),
-        ]
+        ],
+        externalsPresets: {
+            node: true,
+            electronRenderer: true
+        }
     },
     // edit files for main process
     {
@@ -235,6 +243,10 @@ module.exports = [
             }),
             new webpack.DefinePlugin({appName: JSON.stringify(appName)}),
             new webpack.DefinePlugin({appVersion: JSON.stringify(appVersion)}),
-        ]
+        ],
+        externalsPresets: {
+            node: true,
+            electronMain: true
+        }
     }
 ]

@@ -34,7 +34,7 @@ class ExternalWebsiteController extends AbstractController {
             autoHideMenuBar: true,
             show: false,
             title: this.title,
-            icon: this._iconPath,
+            // icon: this.iconPath,
             webPreferences: {
                 spellcheck: true
             },

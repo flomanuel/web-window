@@ -27,8 +27,6 @@ Read [this file](./doc/DEBUG.md) on how to debug the project.
 
 Currently, the project is only compatible with linux 64-bit systems.
 
-Getting it to work under macOS / Windows shouldn't be a lot of work.
-
 Execute the bash script [build-app.sh](scripts/build-app.sh) from inside the container **as root user**.
 
 The script accepts some optional parameters:
@@ -58,9 +56,6 @@ this repository.
 
 This project uses different images. Please see each images' license when using them.
 
-- [Microsoft OneNote icon. Edited: changed aspect ratio to 1:1.](https://commons.wikimedia.org/wiki/File:Microsoft_Office_OneNote_(2019%E2%80%93present).svg) (
-  last accessed 04.05.2021 22:51)
-- [Microsoft To Do icon](https://commons.wikimedia.org/wiki/File:To_Do.svg) (last accessed 04.05.2021 22:51)
 - [Window emoji used for WebWindows icon and logo was designed by OpenMoji – the open-source emoji and icon project. License: CC BY-SA 4.0](https://github.com/hfg-gmuend/openmoji) (
   last accessed 03.06.2021 00:21)
 - [All other icons / emojis were designed by OpenMoji – the open-source emoji and icon project. License: CC BY-SA 4.0](https://github.com/hfg-gmuend/openmoji) (

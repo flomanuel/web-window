@@ -115,13 +115,13 @@ fi
 divider
 info "Building webpack bundles... \n"
 cd $srcCodePath || fatal "    Source code path not existing."
-npm run wp_build || fatel "    Couldn't build webpack bundles."
+npm run wp_build || fatal "    Couldn't build webpack bundles."
 success "Building webpack bundles... \n"
 
 # copy necessary source code into build path
 divider
 info "Copying files to build path... \n"
-cp -r "$srcCodePath/dist/" "$buildPath/srcCode/dist/" || fatal "Couldn't copy source code into the build directory."
+cp -r $srcCodePath/dist/* $buildPath/srcCode/dist/ || fatal "Couldn't copy source code into the build directory."
 cp "$srcCodePath/package.json" "$buildPath/srcCode/" || fatal "Couldn't copy package.json into the build directory."
 cp "$srcCodePath/package-lock.json" "$buildPath/srcCode/" || fatal "Couldn't copy package-lock.json into the build directory."
 cp "$srcCodePath/LICENSE" "$buildPath/srcCode/" || fatal "Couldn't copy LICENSE into the build directory."
@@ -142,9 +142,9 @@ success "Switching to build path... \n"
 
 # get Electron"s prebuilt binaries
 divider
-info "Downloading electron binaries... \n"
-npm install electron-packager -g
-success "Downloading electron binaries... \n"
+info "Downloading electrons binaries... \n"
+npm install -g electron-packager || fatal "Couldn't download electrons binaries."
+success "Downloading electrons binaries... \n"
 
 # build app
 divider
@@ -155,13 +155,13 @@ success 'Building app... \n \n'
 # get electrons installer for creating .deb-files
 divider ""
 info "Getting electrons tools for creating .deb-files... \n"
-npm install -g electron-installer-debian
+npm install -g electron-installer-debian || fatal "Couldn't download electrons tools for creating .deb-files."
 success 'Getting electrons tools for creating .deb-files... \n \n'
 
 # create debian package
 divider
 info "Creating debian package... \n \n"
 cd "$buildPath/$appName-linux-x64/" || fatal "Couldn't create debian package ..."
-electron-installer-debian --src "$buildPath/$appName-linux-x64/" --arch amd64 --config /opt/project/debian.json
+electron-installer-debian --src "$buildPath/$appName-linux-x64/" --arch amd64 --config /opt/project/debian.json || fatal "Couldn't create debian package ..."
 
 success 'Creating debian package... \n \n'
