@@ -97,7 +97,7 @@ fi
 
 divider
 info "Creating folder structure inside build path... \n"
-mkdir -p "$buildPath/srcCode/dist" || fatal "Couldn't create folder structure inside build path."
+mkdir -p "$buildPath/srcCode" || fatal "Couldn't create folder structure inside build path."
 success "Creating folder structure inside build path... \n"
 
 #if necessary clean dist folder in source code path
@@ -121,7 +121,7 @@ success "Building webpack bundles... \n"
 # copy necessary source code into build path
 divider
 info "Copying files to build path... \n"
-cp -r $srcCodePath/dist/* $buildPath/srcCode/dist/ || fatal "Couldn't copy source code into the build directory."
+cp -r $srcCodePath/dist/* $buildPath/srcCode/ || fatal "Couldn't copy source code into the build directory."
 cp "$srcCodePath/package.json" "$buildPath/srcCode/" || fatal "Couldn't copy package.json into the build directory."
 cp "$srcCodePath/package-lock.json" "$buildPath/srcCode/" || fatal "Couldn't copy package-lock.json into the build directory."
 cp "$srcCodePath/LICENSE" "$buildPath/srcCode/" || fatal "Couldn't copy LICENSE into the build directory."
