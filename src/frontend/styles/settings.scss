@@ -1,0 +1,124 @@
+/******* table of contents *******
+imports
+global setup
+header
+form & website entries
+**********************************/
+
+/**********************************
+imports
+**********************************/
+@import './general/fonts';
+
+/**********************************
+global setup
+**********************************/
+
+/**********************************
+header
+**********************************/
+.header {
+  @include roboto(900, 2rem, false);
+  background-color: #00bfffff;
+  display: flex;
+  margin: -8px -8px 16px;
+  padding: 8px;
+  position: relative;
+
+  &:not(.button#clearData) {
+    color: #000;
+  }
+
+  .button#clearData {
+    @include roboto(300, 1rem, false, italic);
+    border: 0.2rem solid #00aee7;
+    border-radius: 0.4rem;
+    color: #0075a0;
+    cursor: pointer;
+    padding: 0.2rem;
+    position: absolute;
+    right: 0.5rem;
+    top: auto;
+  }
+
+  .button#clearData:hover {
+    background-color: #009ed2;
+  }
+}
+
+/**********************************
+form & website entries
+**********************************/
+#form-new-entry > .form-new-entry__toggle > img,
+#website-entries > .website-entries__toggle > img {
+  height: 2rem;
+  width: auto;
+}
+
+#form-new-entry:not(.form-new-entry--hidden) > .form-new-entry__toggle > img,
+#website-entries:not(.website-entries--hidden) > .website-entries__toggle > img {
+  transform: rotateZ(90deg);
+}
+
+#form-new-entry.form-new-entry--hidden > .form-new-entry__toggle > img,
+#website-entries.website-entries--hidden > .website-entries__toggle > img {
+  transform: rotateZ(-90deg);
+}
+
+.form-new-entry__elements {
+  margin: 1.5rem;
+}
+
+.website-entries__element {
+  border: 0.1rem solid #000;
+  margin: 1rem;
+  padding: 0.5rem;
+  pointer-events: none;
+}
+
+#form-new-entry.form-new-entry--hidden .form-new-entry__elements,
+#website-entries.website-entries--hidden .website-entries__element {
+  display: none;
+}
+
+.website-entries__element > .element__title > span {
+  margin: auto 0;
+  padding-right: 0.5rem;
+}
+
+#form-new-entry > .form-new-entry__toggle > span,
+#website-entries > .website-entries__toggle > span {
+  pointer-events: none;
+  transform: rotateZ(90deg);
+}
+
+#form-new-entry > .form-new-entry__toggle,
+#website-entries > .website-entries__toggle {
+  border-bottom: 0.1rem solid #000;
+  cursor: pointer;
+}
+
+.form-new-entry__elements #ww_url,
+.form-new-entry__elements #ww_title {
+  width: 100%;
+}
+
+.website-entries__element .element__icon {
+  max-height: 2.5rem;
+}
+
+.website-entries__element > .element__title {
+  display: flex;
+  margin: 0;
+}
+
+#ww_img {
+  border: 0.1rem dashed #000;
+  cursor: pointer;
+  height: 10rem;
+  width: 100%;
+}
+
+#ww_button {
+  display: block;
+}
