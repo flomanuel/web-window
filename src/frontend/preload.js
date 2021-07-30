@@ -1,5 +1,6 @@
 const {contextBridge, ipcRenderer} = require('electron')
 const wwEvents = require('../constants/wwEvents')
+const crypto = require("crypto")
 
 class SettingsPreload {
     init() {
@@ -28,7 +29,8 @@ class SettingsPreload {
                 ipcRenderer.send(wwEvents.SETTINGS_WINDOW_REQ_SAVE_SETTINGS.toString(), {
                     title: title,
                     url: url,
-                    imgPath: imgPath
+                    imgPath: imgPath,
+                    id: crypto.createHmac('md5', Date.now().toString() + Math.random()).update(Date.now().toString() + Math.random() + title).digest('hex')
                 })
                 return new Promise(resolve => {
                     ipcRenderer.on(wwEvents.SETTINGS_WINDOW_REQ_SAVE_SETTINGS_RESPONSE.toString(), (e, args) => {

@@ -1,10 +1,13 @@
 const {app, Tray, Menu} = require('electron');
 const nativeImage = require('electron').nativeImage
-const ExternalWebsiteController = require('../controller/ExternalWebsiteController');
-const SettingsController = require('../controller/SettingsController');
 const path = require('path');
 const electronSettings = require('electron-settings');
+const crypto = require("crypto")
+
+const ExternalWebsiteController = require('../controller/ExternalWebsiteController');
+const SettingsController = require('../controller/SettingsController');
 const wwEvents = require('../constants/wwEvents');
+
 
 class WebWindow {
     constructor() {
@@ -18,14 +21,17 @@ class WebWindow {
         const lock = app.requestSingleInstanceLock();
         this.settings = electronSettings.getSync();
 
-        if (!this.settings.user) {
-            electronSettings.setSync('user', {'websites': []});
-            this.settings = electronSettings.getSync();
-        }
-
         if (!lock) {
             app.quit();
         } else {
+            if (!this.settings.user) {
+                electronSettings.setSync('user', {'websites': []});
+                electronSettings.setSync('version', process.env.npm_package_version);
+                this.settings = electronSettings.getSync();
+            } else {
+                this.migrateUserData();
+            }
+
             app.on('second-instance', () => {
                 if (this.externalWebsiteControllers !== null) {
                     this.externalWebsiteControllers.forEach(controller => {
@@ -38,6 +44,23 @@ class WebWindow {
             this.initApp();
         }
     }
+
+    migrateUserData() {
+        if (!this.settings.version || this.settings.version !== process.env.npm_package_version) {
+            this.settings.version = process.env.npm_package_version;
+            electronSettings.setSync('version', this.settings.version);
+        }
+
+        this.settings.user.websites?.forEach(website => {
+            if (!website.id) {
+                website.id = crypto.createHmac('md5', Date.now().toString() + Math.random()).update(Date.now().toString() + Math.random()).digest('hex')
+            }
+        });
+        if (this.settings.user.websites.length > 0) {
+            electronSettings.setSync('user.websites', this.settings.user.websites)
+        }
+    }
+
 
     initApp() {
         app.whenReady().then(async () => {

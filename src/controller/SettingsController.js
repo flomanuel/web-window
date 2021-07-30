@@ -74,7 +74,8 @@ class SettingsController extends AbstractController {
             {
                 'url': args.url,
                 'iconPath': iconPath,
-                'title': args.title
+                'title': args.title,
+                'id': args.id
             }
         );
         electronSettings.setSync('user', userSettings);
