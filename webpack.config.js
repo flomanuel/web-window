@@ -82,14 +82,18 @@ module.exports = [
                     type: "asset/resource"
                 },
                 {
+                    test: /\.scss$/i,
+                    use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+                },
+                {
+                    test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                    type: 'asset/resource',
+                },
+                {
                     test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
                     loader: "babel-loader",
                     options: {presets: ["@babel/env", "@babel/preset-react"]}
-                },
-                {
-                    test: /\.scss$/i,
-                    use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
                 },
             ]
         },
