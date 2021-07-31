@@ -1,11 +1,12 @@
 import {BrowserWindow, ipcMain} from "electron";
-import AbstractController from "./AbstractController";
 import * as path from "path";
+import * as fs from "fs";
+import AbstractController from "./AbstractController";
 import * as electronSettings from "electron-settings";
 import {wwEvents} from "../constants/wwEvents";
-import * as fs from "fs";
 
 export default class SettingsController extends AbstractController {
+
     /**
      *
      * @param iconPath
@@ -13,16 +14,14 @@ export default class SettingsController extends AbstractController {
      */
     constructor(iconPath: string, title: string) {
         super(iconPath, title);
-        this.init().catch(e => {
-            throw `Error creating SettingsController: ${e}`
-        });
+        this.init();
     }
 
     /**
      *
-     * @returns {Promise<void>}
+     * @protected
      */
-    async init() {
+    protected init() {
         this.win = new BrowserWindow({
             x: 100,
             y: 100,
@@ -38,18 +37,22 @@ export default class SettingsController extends AbstractController {
             skipTaskbar: true
         });
         super.init();
-        this.handleIpcRenderRequests();
-        await this.win.loadFile(path.join(this.appDir, 'frontend', 'index.html'));
+        this.handleRenderProcessRequests();
+        this.win.loadFile(path.join(this.appDir, 'frontend', 'index.html'));
     }
 
-    handleIpcRenderRequests() {
+    /**
+     *
+     * @private
+     */
+    private handleRenderProcessRequests() {
         ipcMain.on(wwEvents.SETTINGS_WINDOW_REQ_SETTINGS.toString(), (event) => {
             const userSettings = electronSettings.getSync('user');
             event.sender.send(wwEvents.SETTINGS_WINDOW_REQ_SETTINGS_RESPONSE.toString(), userSettings);
         });
 
         ipcMain.on(wwEvents.SETTINGS_WINDOW_REQ_SAVE_SETTINGS.toString(), (event, args) => {
-            this.saveNewSettingsEntry(args);
+            SettingsController.saveNewSettingsEntry(args);
             event.sender.send(wwEvents.SETTINGS_WINDOW_REQ_SAVE_SETTINGS_RESPONSE.toString(), true);
         });
 
@@ -61,13 +64,14 @@ export default class SettingsController extends AbstractController {
 
     /**
      *
-     * @param args {title, url, imgPath, id}
+     * @param args
+     * @private
      */
-    saveNewSettingsEntry(args: { title: string, url: string, imgPath: string, id: string }) {
+    private static saveNewSettingsEntry(args: { title: string, url: string, imgPath: string, id: string }) {
         const userSettings: any = electronSettings.getSync('user');
         let iconPath = '';
         if (typeof args.imgPath === 'string') {
-            iconPath = `data:image/png;base64,${this.base64Encode(args.imgPath)}`;
+            iconPath = `data:image/png;base64,${SettingsController.base64Encode(args.imgPath)}`;
         }
         userSettings?.websites.push(
             {
@@ -83,8 +87,9 @@ export default class SettingsController extends AbstractController {
     /**
      *
      * @param filePath
+     * @private
      */
-    base64Encode(filePath: string) {
+    private static base64Encode(filePath: string) {
         const bitmap = fs.readFileSync(filePath);
         return new Buffer(bitmap).toString('base64');
     }

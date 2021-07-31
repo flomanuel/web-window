@@ -1,7 +1,6 @@
 import SettingsController from "../controller/SettingsController";
 import AbstractController from "../controller/AbstractController";
 import ExternalWebsiteController from "../controller/ExternalWebsiteController";
-import {wwEvents} from "../constants/wwEvents";
 
 import {app, Tray, Menu, nativeImage} from "electron";
 import * as path from "path";
@@ -10,11 +9,11 @@ import * as crypto from "crypto";
 
 
 export default class WebWindow {
-    externalWebsiteControllers: AbstractController[] = null;
-    settings: any = null;
-    appDir: string;
-    settingsController: SettingsController = null;
 
+    private externalWebsiteControllers: AbstractController[] = null;
+    private settings: any = null;
+    private readonly appDir: string;
+    private settingsController: SettingsController = null;
 
     constructor() {
         this.appDir = app.getAppPath();
@@ -38,7 +37,7 @@ export default class WebWindow {
             app.on('second-instance', () => {
                 if (this.externalWebsiteControllers !== null) {
                     this.externalWebsiteControllers.forEach(controller => {
-                        if (controller instanceof ExternalWebsiteController) {
+                        if (controller instanceof AbstractController) {
                             controller.show();
                         }
                     });
@@ -48,7 +47,31 @@ export default class WebWindow {
         }
     }
 
-    migrateUserData() {
+    /**
+     *
+     * @private
+     */
+    private initApp() {
+        app.whenReady().then(async () => {
+            await this.createControllers();
+            this.createTray();
+            if (this.externalWebsiteControllers.length <= 0) {
+                this.openSettingsController();
+            }
+        })
+
+        app.on('window-all-closed', () => {
+            if (process.platform !== 'darwin' && (this.externalWebsiteControllers === null || this.externalWebsiteControllers instanceof Array && this.externalWebsiteControllers.length <= 0)) {
+                app.quit();
+            }
+        })
+    }
+
+    /**
+     *
+     * @private
+     */
+    private migrateUserData() {
         if (!this.settings.version || this.settings.version !== process.env.npm_package_version) {
             this.settings.version = process.env.npm_package_version;
             electronSettings.setSync('version', this.settings.version);
@@ -64,37 +87,23 @@ export default class WebWindow {
         }
     }
 
-
-    initApp() {
-        app.whenReady().then(async () => {
-            await this.createControllers();
-            this.createTray();
-            if (this.externalWebsiteControllers.length <= 0) {
-                app.emit(wwEvents.SETTINGS_WINDOW_OPENED.toString());
-            }
-        })
-
-        app.on('window-all-closed', () => {
-            if (process.platform !== 'darwin' && (this.externalWebsiteControllers === null || this.externalWebsiteControllers instanceof Array && this.externalWebsiteControllers.length <= 0)) {
-                app.quit();
-            }
-        })
-
-        // @ts-ignore
-        app.on(wwEvents.SETTINGS_WINDOW_OPENED.toString(), async () => {
-            if (this.settingsController === null) {
-                this.settingsController = await new SettingsController(null, 'Settings');
-            } else {
-                this.settingsController.toggleWindow();
-            }
-        })
+    /**
+     *
+     * @private
+     */
+    private openSettingsController() {
+        if (this.settingsController === null) {
+            this.settingsController = new SettingsController(null, 'Settings');
+        } else {
+            this.settingsController.toggleWindow();
+        }
     }
 
     /**
      *
-     * @returns {Promise<ExternalWebsiteController[]>}
+     * @private
      */
-    createControllers() {
+    private createControllers() {
         this.externalWebsiteControllers = [];
         return new Promise(resolve => {
             this.settings?.user?.websites?.forEach(async (ws: any) => {
@@ -113,7 +122,11 @@ export default class WebWindow {
         return nativeImage.createFromPath(iconPath);
     }
 
-    createTray() {
+    /**
+     *
+     * @private
+     */
+    private createTray() {
         const menuTemplate: any[] = [];
         let tray: Tray;
         if (this.externalWebsiteControllers.length > 0) {
@@ -130,10 +143,10 @@ export default class WebWindow {
 
         menuTemplate.push(
             {label: 'Separator', type: 'separator'},
-            {label: 'settings', click: () => app.emit(wwEvents.SETTINGS_WINDOW_OPENED.toString())},
+            {label: 'settings', click: () => this.openSettingsController()},
             {
                 label: 'quit',
-                click: () => this.cleanupAndQuit()
+                click: () => WebWindow.cleanupAndQuit()
             },
         );
 
@@ -143,7 +156,11 @@ export default class WebWindow {
         tray.setContextMenu(context);
     }
 
-    cleanupAndQuit() {
+    /**
+     *
+     * @private
+     */
+    private static cleanupAndQuit() {
         app.exit(0);
     }
 }

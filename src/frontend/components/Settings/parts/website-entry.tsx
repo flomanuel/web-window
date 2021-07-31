@@ -1,9 +1,9 @@
-import {Component} from "react";
+import {Component, ReactNode} from "react";
 import * as React from "react";
 
 export default class WebsiteEntry extends Component<any, any> {
 
-    render() {
+    render(): ReactNode {
         const entry = this.props?.entry;
         return (
             <div key={entry.id ? entry.id : null} className="website-entries__element">

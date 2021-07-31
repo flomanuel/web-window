@@ -8,10 +8,6 @@ export default class AbstractController {
     private _title: string;
     private _iconPath: string;
 
-    /**
-     *
-     * @returns {string}
-     */
     get iconPath() {
         return this._iconPath !== '' ? this._iconPath : path.join(this.appDir, 'assets', '512x512.png');
     }
@@ -24,9 +20,6 @@ export default class AbstractController {
         this._iconPath = value;
     }
 
-    /**
-     * @returns string
-     */
     get title(): string {
         return this._title !== '' && this._title !== undefined ? this._title : 'Element Title';
     }
@@ -51,7 +44,11 @@ export default class AbstractController {
         this.title = title;
     }
 
-    init() {
+    /**
+     *
+     * @protected
+     */
+    protected init() {
         this.win.webContents.on('dom-ready', () => {
             this.show();
         });
