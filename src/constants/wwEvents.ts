@@ -1,4 +1,4 @@
-const wwEvents = Object.freeze({
+export const wwEvents = Object.freeze({
         SETTINGS_WINDOW_OPENED: Symbol("request to open settings-window"),
         SETTINGS_WINDOW_REQ_SETTINGS: Symbol("requesting user settings"),
         SETTINGS_WINDOW_REQ_SETTINGS_RESPONSE: Symbol("response for user settings request"),
@@ -8,4 +8,3 @@ const wwEvents = Object.freeze({
         SETTINGS_WINDOW_REQ_REMOVE_WEBSITES_RESPONSE: Symbol("response telling that all windows from user-settings were deleted")
     }
 )
-module.exports = wwEvents;

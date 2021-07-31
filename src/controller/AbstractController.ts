@@ -1,7 +1,13 @@
-const path = require('path');
-const {app} = require('electron');
+import * as path from "path";
+import {app} from "electron";
 
-class AbstractController {
+export default class AbstractController {
+
+    public readonly appDir: string;
+    public win: any;
+    private _title: string;
+    private _iconPath: string;
+
     /**
      *
      * @returns {string}
@@ -19,10 +25,9 @@ class AbstractController {
     }
 
     /**
-     *
-     * @returns {string}
+     * @returns string
      */
-    get title() {
+    get title(): string {
         return this._title !== '' && this._title !== undefined ? this._title : 'Element Title';
     }
 
@@ -30,7 +35,7 @@ class AbstractController {
      *
      * @param value
      */
-    set title(value) {
+    set title(value: string) {
         this._title = value;
     }
 
@@ -39,11 +44,11 @@ class AbstractController {
      * @param iconPath
      * @param title
      */
-    constructor(iconPath, title) {
+    constructor(iconPath: string, title: string) {
         this.appDir = app.getAppPath();
+        this.win = null;
         this.iconPath = iconPath;
         this.title = title;
-        this.win = null;
     }
 
     init() {
@@ -51,7 +56,7 @@ class AbstractController {
             this.show();
         });
 
-        this.win.on('close', (e) => {
+        this.win.on('close', (e: any) => {
             if (this.win.isVisible()) {
                 e.preventDefault();
                 this.win.minimize();
@@ -80,5 +85,3 @@ class AbstractController {
         }
     }
 }
-
-module.exports = AbstractController;

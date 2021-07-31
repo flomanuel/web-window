@@ -1,7 +1,7 @@
-const {BrowserWindow} = require('electron');
-const AbstractController = require('./AbstractController');
+import {BrowserWindow} from "electron";
+import AbstractController from "./AbstractController";
 
-class ExternalWebsiteController extends AbstractController {
+export default class ExternalWebsiteController extends AbstractController {
     /**
      *
      * @param externalUrl
@@ -9,17 +9,14 @@ class ExternalWebsiteController extends AbstractController {
      * @param title
      * @returns {boolean|Promise<void>}
      */
-    constructor(externalUrl, iconPath, title) {
+    constructor(public externalUrl: string, iconPath: string, title: string) {
         super(iconPath, title);
-        this.externalUrl = externalUrl;
 
         try {
             if (this.validateData()) {
                 this.init().catch(e => {
                     throw `Error creating ExternalWebsiteController: ${e}`
                 });
-            } else {
-                return false;
             }
         } catch (e) {
             console.error(`Error creating ExternalWebsiteController: ${e}`)
@@ -62,5 +59,3 @@ class ExternalWebsiteController extends AbstractController {
         return this.externalUrl && this.title;
     }
 }
-
-module.exports = ExternalWebsiteController;

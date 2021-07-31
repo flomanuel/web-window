@@ -1,17 +1,17 @@
-const {BrowserWindow, ipcMain} = require('electron');
-const AbstractController = require('./AbstractController');
-const path = require('path');
-const electronSettings = require('electron-settings');
-const wwEvents = require('../constants/wwEvents')
-const fs = require('fs');
+import {BrowserWindow, ipcMain} from "electron";
+import AbstractController from "./AbstractController";
+import * as path from "path";
+import * as electronSettings from "electron-settings";
+import {wwEvents} from "../constants/wwEvents";
+import * as fs from "fs";
 
-class SettingsController extends AbstractController {
+export default class SettingsController extends AbstractController {
     /**
      *
      * @param iconPath
      * @param title
      */
-    constructor(iconPath, title) {
+    constructor(iconPath: string, title: string) {
         super(iconPath, title);
         this.init().catch(e => {
             throw `Error creating SettingsController: ${e}`
@@ -31,7 +31,6 @@ class SettingsController extends AbstractController {
             autoHideMenuBar: true,
             show: false,
             title: this.title,
-            // icon: this.iconPath,
             webPreferences: {
                 spellcheck: true,
                 preload: path.join(this.appDir, 'frontend', 'preload.js'),
@@ -62,10 +61,10 @@ class SettingsController extends AbstractController {
 
     /**
      *
-     * @param args {title, url, imgPath}
+     * @param args {title, url, imgPath, id}
      */
-    saveNewSettingsEntry(args) {
-        const userSettings = electronSettings.getSync('user');
+    saveNewSettingsEntry(args: { title: string, url: string, imgPath: string, id: string }) {
+        const userSettings: any = electronSettings.getSync('user');
         let iconPath = '';
         if (typeof args.imgPath === 'string') {
             iconPath = `data:image/png;base64,${this.base64Encode(args.imgPath)}`;
@@ -84,12 +83,9 @@ class SettingsController extends AbstractController {
     /**
      *
      * @param filePath
-     * @returns {string}
      */
-    base64Encode(filePath) {
+    base64Encode(filePath: string) {
         const bitmap = fs.readFileSync(filePath);
         return new Buffer(bitmap).toString('base64');
     }
 }
-
-module.exports = SettingsController;

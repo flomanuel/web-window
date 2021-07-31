@@ -26,11 +26,24 @@ module.exports = [
         mode: buildMode,
         target: 'electron-preload',
 
-        entry: path.join(__dirname, 'src', 'frontend', 'preload.js'),
+        entry: path.join(__dirname, 'src', 'frontend', 'preload.ts'),
 
         output: {
             path: path.join(__dirname, 'dist', 'frontend'),
             filename: "preload.js",
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(tsx|ts)$/,
+                    exclude: /node_modules/,
+                    loader: "babel-loader",
+                    options: {presets: ["@babel/preset-env", "@babel/preset-typescript"]}
+                },
+            ]
+        },
+        resolve: {
+            extensions: ['.tsx', '.ts', '.js'],
         },
         optimization: {
             minimize: !isDev,
@@ -48,7 +61,7 @@ module.exports = [
         },
         plugins: [
             new ESLintPlugin({
-                files: path.join(__dirname, 'src', 'frontend', 'preload.js'),
+                files: path.join(__dirname, 'src', 'frontend', 'preload.ts'),
             }),
             new webpack.DefinePlugin({appName: JSON.stringify(appName)}),
             new webpack.DefinePlugin({appVersion: JSON.stringify(appVersion)}),
@@ -64,7 +77,7 @@ module.exports = [
         devtool: 'source-map',
         target: 'electron-renderer',
 
-        entry: path.join(__dirname, 'src', 'frontend', 'index.js'),
+        entry: path.join(__dirname, 'src', 'frontend', 'index.tsx'),
 
         output: {
             path: path.join(__dirname, 'dist', 'frontend'),
@@ -73,6 +86,12 @@ module.exports = [
 
         module: {
             rules: [
+                {
+                    test: /\.(tsx|ts)$/,
+                    exclude: /node_modules/,
+                    loader: "babel-loader",
+                    options: {presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"]}
+                },
                 {
                     test: /\.html$/i,
                     loader: "html-loader"
@@ -88,14 +107,11 @@ module.exports = [
                 {
                     test: /\.(woff|woff2|eot|ttf|otf)$/i,
                     type: 'asset/resource',
-                },
-                {
-                    test: /\.(js|jsx)$/,
-                    exclude: /node_modules/,
-                    loader: "babel-loader",
-                    options: {presets: ["@babel/env", "@babel/preset-react"]}
-                },
+                }
             ]
+        },
+        resolve: {
+            extensions: ['.tsx', '.ts', '.js'],
         },
         optimization: {
             minimize: !isDev,
@@ -179,7 +195,7 @@ module.exports = [
         devtool: 'source-map',
         target: 'electron-main',
 
-        entry: path.join(__dirname, 'src', 'main.js'),
+        entry: path.join(__dirname, 'src', 'main.ts'),
 
         output: {
             path: path.join(__dirname, 'dist'),
@@ -189,10 +205,19 @@ module.exports = [
         module: {
             rules: [
                 {
+                    test: /\.(tsx|ts)$/,
+                    exclude: /node_modules/,
+                    loader: "babel-loader",
+                    options: {presets: ["@babel/preset-env", "@babel/preset-typescript"]}
+                },
+                {
                     test: /\.(png|svg|jpg|jpeg|gif)$/i,
                     type: "asset/resource"
                 }
             ]
+        },
+        resolve: {
+            extensions: ['.tsx', '.ts', '.js'],
         },
         optimization: {
             minimize: !isDev,
@@ -211,7 +236,6 @@ module.exports = [
         plugins: [
             new CopyPlugin({
                 patterns: [
-                    // { from: `${__dirname}/src/assets/**/*`, to: './dist/assets/'}
                     {from: path.join(__dirname, 'src', 'assets'), to: path.join(__dirname, 'dist', 'assets')}
                 ]
             }),
