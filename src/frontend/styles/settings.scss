@@ -2,12 +2,14 @@
 imports
 global setup
 header
-form & website entries
+form - new entry
+website entries
 **********************************/
 
 /**********************************
 imports
 **********************************/
+@import './general/color';
 @import './general/fonts';
 
 /**********************************
@@ -19,21 +21,21 @@ header
 **********************************/
 .header {
   @include roboto(900, 2rem, false);
-  background-color: #00bfffff;
+  background-color: $primary;
   display: flex;
   margin: -8px -8px 16px;
   padding: 8px;
   position: relative;
 
   &:not(.button#clearData) {
-    color: #000;
+    color: $text--black;
   }
 
   .button#clearData {
     @include roboto(300, 1rem, false, italic);
-    border: 0.2rem solid #00aee7;
+    border: 0.15rem solid $primary--dark;
     border-radius: 0.4rem;
-    color: #0075a0;
+    color: $primary--dark;
     cursor: pointer;
     padding: 0.2rem;
     position: absolute;
@@ -42,83 +44,115 @@ header
   }
 
   .button#clearData:hover {
-    background-color: #009ed2;
+    background-color: darken($primary, 5);
   }
 }
 
 /**********************************
-form & website entries
+form "new entry"
 **********************************/
-#form-new-entry > .form-new-entry__toggle > img,
-#website-entries > .website-entries__toggle > img {
-  height: 2rem;
-  width: auto;
+.form-new-entry {
+  /** head **/
+  > .form-new-entry__toggle {
+    border-bottom: 0.1rem solid $black;
+    cursor: pointer;
+  }
+
+  > .form-new-entry__toggle > span {
+    pointer-events: none;
+    transform: rotateZ(90deg);
+  }
+
+  > .form-new-entry__toggle > img {
+    height: 2rem;
+    width: auto;
+  }
+
+  &:not(.form-new-entry--hidden) > .form-new-entry__toggle > img {
+    transform: rotateZ(90deg);
+  }
+
+  &.form-new-entry--hidden > .form-new-entry__toggle > img {
+    transform: rotateZ(-90deg);
+  }
+
+  /** elements **/
+  .form-new-entry__elements {
+    margin: 1.5rem;
+  }
+
+  &.form-new-entry--hidden .form-new-entry__elements {
+    display: none;
+  }
+
+  .form-new-entry__elements #ww_url,
+  .form-new-entry__elements #ww_title {
+    width: 100%;
+  }
+
+  .form-new-entry__elements .ww-img {
+    border: 0.1rem dashed $black;
+    cursor: pointer;
+    height: 10rem;
+    width: 100%;
+  }
+
+  .form-new-entry__elements .ww-button {
+    display: block;
+  }
 }
 
-#form-new-entry:not(.form-new-entry--hidden) > .form-new-entry__toggle > img,
-#website-entries:not(.website-entries--hidden) > .website-entries__toggle > img {
-  transform: rotateZ(90deg);
-}
+/**********************************
+list "website entries"
+**********************************/
+#website-entries {
+  /** head **/
+  > .website-entries__toggle {
+    border-bottom: 0.1rem solid $black;
+    cursor: pointer;
+  }
 
-#form-new-entry.form-new-entry--hidden > .form-new-entry__toggle > img,
-#website-entries.website-entries--hidden > .website-entries__toggle > img {
-  transform: rotateZ(-90deg);
-}
+  > .website-entries__toggle > span {
+    pointer-events: none;
+    transform: rotateZ(90deg);
+  }
 
-.form-new-entry__elements {
-  margin: 1.5rem;
-}
+  > .website-entries__toggle > img {
+    height: 2rem;
+    width: auto;
+  }
 
-.website-entries__element {
-  border: 0.1rem solid #000;
-  margin: 1rem;
-  padding: 0.5rem;
-  pointer-events: none;
-}
+  &:not(.website-entries--hidden) > .website-entries__toggle > img {
+    transform: rotateZ(90deg);
+  }
 
-#form-new-entry.form-new-entry--hidden .form-new-entry__elements,
-#website-entries.website-entries--hidden .website-entries__element {
-  display: none;
-}
+  &.website-entries--hidden > .website-entries__toggle > img {
+    transform: rotateZ(-90deg);
+  }
 
-.website-entries__element > .element__title > span {
-  margin: auto 0;
-  padding-right: 0.5rem;
-}
+  /** element **/
+  .website-entries__element {
+    border: 0.1rem solid $black;
+    margin: 1rem;
+    padding: 0.5rem;
+    pointer-events: none;
+  }
 
-#form-new-entry > .form-new-entry__toggle > span,
-#website-entries > .website-entries__toggle > span {
-  pointer-events: none;
-  transform: rotateZ(90deg);
-}
+  &.website-entries--hidden .website-entries__element {
+    display: none;
+  }
 
-#form-new-entry > .form-new-entry__toggle,
-#website-entries > .website-entries__toggle {
-  border-bottom: 0.1rem solid #000;
-  cursor: pointer;
-}
+  .website-entries__element > .element__title {
+    display: flex;
+    margin: 0;
+  }
 
-.form-new-entry__elements #ww_url,
-.form-new-entry__elements #ww_title {
-  width: 100%;
-}
+  .website-entries__element > .element__title--text {
+    margin: auto 0;
+    padding-right: 0.5rem;
+  }
 
-.website-entries__element .element__icon {
-  max-height: 2.5rem;
-}
-
-.website-entries__element > .element__title {
-  display: flex;
-  margin: 0;
-}
-
-#ww_img {
-  border: 0.1rem dashed #000;
-  cursor: pointer;
-  height: 10rem;
-  width: 100%;
-}
-
-#ww_button {
-  display: block;
+  .website-entries__element .element__icon {
+    max-height: 2.5rem;
+  }
 }

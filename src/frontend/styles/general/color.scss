@@ -17,9 +17,13 @@ $primary--additional: #406280;
 $accent: #ffc107;
 $accent--dark: #ffa000;
 
+$white: #fff;
+$light-grey: #b2b2b2;
+$black: #000;
+
 /**********************************
 font colors
 **********************************/
-$text--black: #000;
-$text--light-grey: #b2b2b2;
-$text--white: #fff;
+$text--black: $black;
+$text--light-grey: $light-grey;
+$text--white: $white;
