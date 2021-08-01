@@ -24,7 +24,11 @@ class Settings extends Component {
         return (
             <div className="Settings">
                 <header className="header">Settings
-                    <div className="button" id="clearData">Clear Data</div>
+                    <div className="button" id="clearData" onClick={() => {
+                        window.electron.clearWebsites().then(() => {
+                            window.location.reload();
+                        })
+                    }}>Clear Data</div>
                 </header>
                 <WebsiteEntriesList userData={this.state.userData}/>
                 <FormNewData/>
