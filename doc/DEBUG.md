@@ -18,11 +18,10 @@ breakpoint.
 WebWindow should already be running with the command line switch _--remote-debugging-port=PORT_. Or simply run _Electron
 Main_.
 
-You also should have established a ssh connection to the container **before** running _Electron Render_. You can use the
+You should have also established a ssh connection to the container **before** running _Electron Render_. You can use the
 small script [sshTunnel.sh](docker/shell/sshTunnel.sh) if you like.
 
 Then run _Electron Render_.
 
-You need to establish a ssh connection beforehand, because the DevTools are only listening on 127.0.0.1.
-Exposing the port to the host won't work because the request's ip-address isn't 127.0.0.1 (if I understand it
-correctly).
+You need to establish a ssh connection beforehand, because the DevTools are only listening on 127.0.0.1. Exposing the
+port to the host won't work because the request's ip-address isn't 127.0.0.1 (if I understand it correctly).

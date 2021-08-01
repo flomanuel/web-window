@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Electron Main" type="NodeJSConfigurationType" application-parameters="--remote-debugging-port=9222" path-to-node="docker-compose://[$PROJECT_DIR$/docker-compose.yml]:app//opt/project/node_modules/.bin/electron" node-parameters="--inspect-brk=0.0.0.0:41715" path-to-js-file="./src/main.js" working-dir="$PROJECT_DIR$">
+  <configuration default="false" name="Electron Main" type="NodeJSConfigurationType" application-parameters="--remote-debugging-port=9222" path-to-node="docker-compose://[$PROJECT_DIR$/docker-compose.yml]:app//opt/project/node_modules/.bin/electron" node-parameters="--inspect-brk=0.0.0.0:41715" path-to-js-file="./dist/main.js" working-dir="$PROJECT_DIR$">
     <EXTENSION ID="com.jetbrains.nodejs.remote.docker.NodeJSDockerRunConfigurationExtension">
       <option name="runCliOptions" value="" />
       <option name="volumeBindings">

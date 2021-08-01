@@ -1,0 +1,36 @@
+/******* table of contents *******
+imports
+global setup
+font mixin "Roboto"
+font mixin "Noto Sans JP"
+font faces "Roboto"
+font faces "Noto Sans JP"
+**********************************/
+
+/**********************************
+imports
+**********************************/
+
+/**********************************
+global setup
+**********************************/
+$font-roboto: 'Roboto', sans-serif;
+$font-noto-sans-jp: 'Noto Sans JP', sans-serif;
+
+/**********************************
+font mixin "Roboto"
+**********************************/
+@mixin roboto($font-weight, $font-size, $line-height, $font-style: normal) {
+  @if $line-height == false {
+    font: $font-style $font-weight $font-size/normal $font-roboto;
+  } @else {
+    font: $font-style $font-weight $font-size/$line-height $font-roboto;
+  }
+}
+
+/**********************************
+font mixin "Noto Sans JP"
+**********************************/
+@mixin noto-sans-jp($font-weight, $font-size, $line-height, $font-style: normal) {
+  font: $font-style $font-weight $font-size/$line-height $font-noto-sans-jp;
+}

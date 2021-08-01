@@ -1,7 +1,7 @@
 {
   "dest": "/output/package/",
   "icon": {
-    "scalable": "./resources/app/src/assets/512x512_colour.svg"
+    "scalable": "./resources/app/assets/512x512_colour.svg"
   },
   "categories": [
     "Utility"

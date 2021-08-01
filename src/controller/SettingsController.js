@@ -31,16 +31,16 @@ class SettingsController extends AbstractController {
             autoHideMenuBar: true,
             show: false,
             title: this.title,
-            icon: this._iconPath,
+            // icon: this.iconPath,
             webPreferences: {
                 spellcheck: true,
-                preload: path.join(__dirname, "/../frontend/settings/preload.js"),
+                preload: path.join(this.appDir, 'frontend', 'preload.js'),
             },
             skipTaskbar: true
         });
         super.init();
         this.handleIpcRenderRequests();
-        await this.win.loadFile(path.join(this.appDir, "/frontend/settings/index.html"));
+        await this.win.loadFile(path.join(this.appDir, 'frontend', 'index.html'));
     }
 
     handleIpcRenderRequests() {
@@ -67,14 +67,15 @@ class SettingsController extends AbstractController {
     saveNewSettingsEntry(args) {
         const userSettings = electronSettings.getSync('user');
         let iconPath = '';
-        if (typeof args.imgPath === 'string') {
+        if (typeof args.imgPath === 'string' && args.imgPath !== '') {
             iconPath = `data:image/png;base64,${this.base64Encode(args.imgPath)}`;
         }
         userSettings?.websites.push(
             {
                 'url': args.url,
                 'iconPath': iconPath,
-                'title': args.title
+                'title': args.title,
+                'id': args.id
             }
         );
         electronSettings.setSync('user', userSettings);

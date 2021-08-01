@@ -12,12 +12,17 @@ class ExternalWebsiteController extends AbstractController {
     constructor(externalUrl, iconPath, title) {
         super(iconPath, title);
         this.externalUrl = externalUrl;
-        if (this.validateData()) {
-            this.init().catch(e => {
-                throw `Error creating ExternalWebsiteController: ${e}`
-            });
-        } else {
-            return false;
+
+        try {
+            if (this.validateData()) {
+                this.init().catch(e => {
+                    throw `Error creating ExternalWebsiteController: ${e}`
+                });
+            } else {
+                return false;
+            }
+        } catch (e) {
+            console.error(`Error creating ExternalWebsiteController: ${e}`)
         }
     }
 
@@ -34,7 +39,7 @@ class ExternalWebsiteController extends AbstractController {
             autoHideMenuBar: true,
             show: false,
             title: this.title,
-            icon: this._iconPath,
+            // icon: this.iconPath,
             webPreferences: {
                 spellcheck: true
             },
