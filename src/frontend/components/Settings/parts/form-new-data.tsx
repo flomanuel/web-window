@@ -1,15 +1,10 @@
-import {Component, ReactNode} from "react";
+import {Component} from "react";
 import toggleIcon from "../../../../assets/icons/toggle.svg";
 import * as React from "react";
 
 export default class FormNewData extends Component<any, { visibilityForm: boolean }> {
-
     private imgPath: string = null;
 
-    /**
-     *
-     * @param props
-     */
     constructor(props: any) {
         super(props);
         this.state = {visibilityForm: false};
@@ -19,11 +14,7 @@ export default class FormNewData extends Component<any, { visibilityForm: boolea
         this.handleDefinedEvents()
     }
 
-    /**
-     *
-     * @private
-     */
-    private handleDefinedEvents() {
+    handleDefinedEvents() {
         // const wsFormNewEntryButton = document.getElementsByClassName('ww-button')[0];
         // const wsFormNewEntryImg = document.getElementsByClassName('ww-img')[0];
         // wsFormNewEntryImg.addEventListener('dragdrop', (e: DragEvent) => {
@@ -31,27 +22,18 @@ export default class FormNewData extends Component<any, { visibilityForm: boolea
         // }, false);
     }
 
-    /**
-     *
-     * @param e
-     * @private
-     */
-    private static preventDefaultPropagation(e: any) {
+    preventDefaultPropagation(e: any) {
         e.stopPropagation();
         e.preventDefault();
     }
 
-    /**
-     *
-     * @private
-     */
-    private saveNewEntry() {
+    saveNewEntry() {
         // @ts-ignore
         const title: string = document.getElementById('ww_title').value;
         // @ts-ignore
         const url: string = document.getElementById('ww_url').value;
         // @ts-ignore
-        window.electron.saveNewEntry(title ? title : 'Title', url ? url : 'https://www.ecosia.org/', this.imgPath).then((value) => {
+        window.electron.saveNewEntry(title ? title : 'Title', url ? url : 'https://www.google.de', this.imgPath).then((value) => {
             if (value) {
                 window.location.reload(); // todo: change data handling to avoid reload (e.g. keep all data in render process, only communicate with main process over preload file to save the data held by the render process)
             } else {
@@ -63,9 +45,8 @@ export default class FormNewData extends Component<any, { visibilityForm: boolea
     /**
      *
      * @param e
-     * @private
      */
-    private persistIconPath(e: any) {
+    persistIconPath(e: any) {
         e.stopPropagation();
         e.preventDefault();
         const dt = e.dataTransfer;
@@ -76,7 +57,7 @@ export default class FormNewData extends Component<any, { visibilityForm: boolea
         this.imgPath = file.path;
     }
 
-    render(): ReactNode {
+    render() {
         return (
             <form className={
                 !this.state.visibilityForm ? 'form-new-entry form-new-entry--hidden' : 'form-new-entry'
@@ -94,12 +75,11 @@ export default class FormNewData extends Component<any, { visibilityForm: boolea
                     <label htmlFor="ww_url">URL:</label>
                     <input type="text" id="ww_url" name="ww_url"/>
                     <div className="ww-img"
-                         onDragEnter={e => FormNewData.preventDefaultPropagation(e)}
-                         onDragOver={e => FormNewData.preventDefaultPropagation(e)}
-                         onDragLeave={e => FormNewData.preventDefaultPropagation(e)}
+                         onDragEnter={ e => this.preventDefaultPropagation(e)}
+                         onDragOver={ e => this.preventDefaultPropagation(e)}
+                         onDragLeave={ e => this.preventDefaultPropagation(e)}
                          onDrop={e => this.persistIconPath(e)}
-                    >Drop png image here.
-                    </div>
+                    >Drop png image here.</div>
                     <br/>
                     <button type="button" className="ww-button" onClick={() => this.saveNewEntry()}>Save</button>
                 </div>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Component, ReactNode} from "react";
+import {Component} from "react";
 import "../../styles/general/fontfaces.scss";
 import "../../styles/index.scss";
 import WebsiteEntriesList from "./parts/website-entries-list";
@@ -7,10 +7,6 @@ import FormNewData from "./parts/form-new-data";
 
 export default class Settings extends Component<any, { userData: any }> {
 
-    /**
-     *
-     * @param props
-     */
     constructor(props: any) {
         super(props);
         this.state = {userData: null};
@@ -21,11 +17,7 @@ export default class Settings extends Component<any, { userData: any }> {
         this.handleDefinedEvents()
     }
 
-    /**
-     *
-     * @private
-     */
-    private getUserData() {
+    getUserData() {
         // @ts-ignore
         window.electron.websiteEntries.then((result: any) => {
             this.setState(({userData: result}))
@@ -34,11 +26,7 @@ export default class Settings extends Component<any, { userData: any }> {
         })
     }
 
-    /**
-     *
-     * @private
-     */
-    private handleDefinedEvents() {
+    handleDefinedEvents() {
         const wsClearDataButton = document.getElementById('clearData');
         wsClearDataButton.addEventListener('click', () => {
             // @ts-ignore
@@ -48,7 +36,7 @@ export default class Settings extends Component<any, { userData: any }> {
         });
     }
 
-    render(): ReactNode {
+    render() {
         return (
             <div className="Settings">
                 <header className="header">Settings

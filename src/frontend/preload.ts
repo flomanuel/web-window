@@ -1,9 +1,8 @@
 import {contextBridge, ipcRenderer} from "electron";
-import * as crypto from "crypto";
 import {wwEvents} from "../constants/wwEvents";
+import * as crypto from "crypto";
 
 class SettingsPreload {
-
     init() {
         this.prepareEvents();
     }

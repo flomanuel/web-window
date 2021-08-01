@@ -2,12 +2,12 @@ import {BrowserWindow} from "electron";
 import AbstractController from "./AbstractController";
 
 export default class ExternalWebsiteController extends AbstractController {
-
     /**
      *
      * @param externalUrl
      * @param iconPath
      * @param title
+     * @returns {boolean|Promise<void>}
      */
     constructor(public externalUrl: string, iconPath: string, title: string) {
         super(iconPath, title);
@@ -25,9 +25,9 @@ export default class ExternalWebsiteController extends AbstractController {
 
     /**
      *
-     * @protected
+     * @returns {Promise<void>}
      */
-    protected async init() {
+    async init() {
         this.win = new BrowserWindow({
             x: 100,
             y: 100,
@@ -36,6 +36,7 @@ export default class ExternalWebsiteController extends AbstractController {
             autoHideMenuBar: true,
             show: false,
             title: this.title,
+            // icon: this.iconPath,
             webPreferences: {
                 spellcheck: true
             },
@@ -47,9 +48,9 @@ export default class ExternalWebsiteController extends AbstractController {
 
     /**
      *
-     * @private
+     * @returns {string}
      */
-    private validateData() {
+    validateData() {
         if (!this.externalUrl) {
             throw 'External URL not specified.';
         } else if (!this.title) {

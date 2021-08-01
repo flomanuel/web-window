@@ -1,20 +1,16 @@
-import {Component, ReactNode} from "react";
+import {Component} from "react";
 import toggleIcon from "../../../../assets/icons/toggle.svg";
 import WebsiteEntry from "./website-entry";
 import * as React from "react";
 
 export default class WebsiteEntriesList extends Component<any, { visibilityList: boolean }> {
 
-    /**
-     *
-     * @param props
-     */
     constructor(props: any) {
         super(props);
         this.state = {visibilityList: true};
     }
 
-    render(): ReactNode {
+    render() {
         return (
             <main id="website-entries" className={
                 !this.state.visibilityList ? 'website-entries--hidden' : null
