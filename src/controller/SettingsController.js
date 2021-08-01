@@ -1,17 +1,17 @@
-import {BrowserWindow, ipcMain} from "electron";
-import AbstractController from "./AbstractController";
-import * as path from "path";
-import * as electronSettings from "electron-settings";
-import {wwEvents} from "../constants/wwEvents";
-import * as fs from "fs";
+const {BrowserWindow, ipcMain} = require('electron');
+const AbstractController = require('./AbstractController');
+const path = require('path');
+const electronSettings = require('electron-settings');
+const wwEvents = require('../constants/wwEvents')
+const fs = require('fs');
 
-export default class SettingsController extends AbstractController {
+class SettingsController extends AbstractController {
     /**
      *
      * @param iconPath
      * @param title
      */
-    constructor(iconPath: string, title: string) {
+    constructor(iconPath, title) {
         super(iconPath, title);
         this.init().catch(e => {
             throw `Error creating SettingsController: ${e}`
@@ -31,6 +31,7 @@ export default class SettingsController extends AbstractController {
             autoHideMenuBar: true,
             show: false,
             title: this.title,
+            // icon: this.iconPath,
             webPreferences: {
                 spellcheck: true,
                 preload: path.join(this.appDir, 'frontend', 'preload.js'),
@@ -61,10 +62,10 @@ export default class SettingsController extends AbstractController {
 
     /**
      *
-     * @param args {title, url, imgPath, id}
+     * @param args {title, url, imgPath}
      */
-    saveNewSettingsEntry(args: { title: string, url: string, imgPath: string, id: string }) {
-        const userSettings: any = electronSettings.getSync('user');
+    saveNewSettingsEntry(args) {
+        const userSettings = electronSettings.getSync('user');
         let iconPath = '';
         if (typeof args.imgPath === 'string') {
             iconPath = `data:image/png;base64,${this.base64Encode(args.imgPath)}`;
@@ -83,9 +84,12 @@ export default class SettingsController extends AbstractController {
     /**
      *
      * @param filePath
+     * @returns {string}
      */
-    base64Encode(filePath: string) {
+    base64Encode(filePath) {
         const bitmap = fs.readFileSync(filePath);
         return new Buffer(bitmap).toString('base64');
     }
 }
+
+module.exports = SettingsController;

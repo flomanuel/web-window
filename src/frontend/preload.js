@@ -1,6 +1,6 @@
-import {contextBridge, ipcRenderer} from "electron";
-import {wwEvents} from "../constants/wwEvents";
-import * as crypto from "crypto";
+const {contextBridge, ipcRenderer} = require('electron')
+const wwEvents = require('../constants/wwEvents')
+const crypto = require("crypto")
 
 class SettingsPreload {
     init() {
@@ -25,7 +25,7 @@ class SettingsPreload {
                     })
                 })
             },
-            'saveNewEntry': (title: string, url: string, imgPath: string) => {
+            'saveNewEntry': (title, url, imgPath) => {
                 ipcRenderer.send(wwEvents.SETTINGS_WINDOW_REQ_SAVE_SETTINGS.toString(), {
                     title: title,
                     url: url,

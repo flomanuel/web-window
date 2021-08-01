@@ -1,23 +1,20 @@
-import SettingsController from "../controller/SettingsController";
-import AbstractController from "../controller/AbstractController";
-import ExternalWebsiteController from "../controller/ExternalWebsiteController";
-import {wwEvents} from "../constants/wwEvents";
+const {app, Tray, Menu} = require('electron');
+const nativeImage = require('electron').nativeImage
+const path = require('path');
+const electronSettings = require('electron-settings');
+const crypto = require("crypto")
 
-import {app, Tray, Menu, nativeImage} from "electron";
-import * as path from "path";
-import * as electronSettings from "electron-settings";
-import * as crypto from "crypto";
-
-
-export default class WebWindow {
-    externalWebsiteControllers: AbstractController[] = null;
-    settings: any = null;
-    appDir: string;
-    settingsController: SettingsController = null;
+const ExternalWebsiteController = require('../controller/ExternalWebsiteController');
+const SettingsController = require('../controller/SettingsController');
+const wwEvents = require('../constants/wwEvents');
 
 
+class WebWindow {
     constructor() {
+        this.externalWebsiteControllers = null;
+        this.settings = null;
         this.appDir = app.getAppPath();
+        this.settingsController = null;
     }
 
     init() {
@@ -54,7 +51,7 @@ export default class WebWindow {
             electronSettings.setSync('version', this.settings.version);
         }
 
-        this.settings.user.websites?.forEach((website: any) => {
+        this.settings.user.websites?.forEach(website => {
             if (!website.id) {
                 website.id = crypto.createHmac('md5', Date.now().toString() + Math.random()).update(Date.now().toString() + Math.random()).digest('hex')
             }
@@ -80,7 +77,6 @@ export default class WebWindow {
             }
         })
 
-        // @ts-ignore
         app.on(wwEvents.SETTINGS_WINDOW_OPENED.toString(), async () => {
             if (this.settingsController === null) {
                 this.settingsController = await new SettingsController(null, 'Settings');
@@ -97,7 +93,7 @@ export default class WebWindow {
     createControllers() {
         this.externalWebsiteControllers = [];
         return new Promise(resolve => {
-            this.settings?.user?.websites?.forEach(async (ws: any) => {
+            this.settings?.user?.websites?.forEach(async (ws) => {
                 const externalWebsiteController = await new ExternalWebsiteController(ws.url, ws.iconPath, ws.title);
                 this.externalWebsiteControllers.push(externalWebsiteController);
             });
@@ -108,18 +104,19 @@ export default class WebWindow {
     /**
      *
      * @param iconPath
+     * @returns {Electron.NativeImage}
      */
-    createTrayIcon(iconPath: string) {
+    createTrayIcon(iconPath) {
         return nativeImage.createFromPath(iconPath);
     }
 
     createTray() {
-        const menuTemplate: any[] = [];
-        let tray: Tray;
+        const menuTemplate = [];
         if (this.externalWebsiteControllers.length > 0) {
             this.externalWebsiteControllers.forEach(controller => {
                 menuTemplate.push({
                         label: controller.title,
+                        // icon: controller.iconPath,
                         submenu: [
                             {label: 'show me', click: () => controller.toggleWindow()},
                         ],
@@ -133,17 +130,20 @@ export default class WebWindow {
             {label: 'settings', click: () => app.emit(wwEvents.SETTINGS_WINDOW_OPENED.toString())},
             {
                 label: 'quit',
+                // icon: path.join(this.appDir, 'assets', 'icons', 'close.png'),
                 click: () => this.cleanupAndQuit()
             },
         );
 
         const context = Menu.buildFromTemplate(menuTemplate);
         const logoPath = path.join(this.appDir, 'assets', '512x512.png');
-        tray = new Tray(this.createTrayIcon(logoPath));
-        tray.setContextMenu(context);
+        this.tray = new Tray(this.createTrayIcon(logoPath));
+        this.tray.setContextMenu(context);
     }
 
     cleanupAndQuit() {
         app.exit(0);
     }
 }
+
+module.exports = WebWindow;
