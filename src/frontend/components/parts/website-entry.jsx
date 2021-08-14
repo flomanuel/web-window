@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import userDataService from "../../../classes/UserDataService"
 
 class WebsiteEntry extends Component {
 
@@ -19,6 +20,14 @@ class WebsiteEntry extends Component {
                          className="element__icon"/> : ''}
                 </h2>
                 <div className="element__url">{entry.url ? entry.url : ''}</div>
+                <div className="button element__delete" onClick={() => {
+                    if (entry.id) {
+                        userDataService.removeWebsiteEntry(entry.id);
+                    } else {
+                        console.error("Couldn't delete entry because it has no id.");
+                    }
+                }}>Delete Entry
+                </div>
             </div>
         );
     }

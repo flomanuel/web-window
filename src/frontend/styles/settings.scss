@@ -133,9 +133,10 @@ list "website entries"
   /** element **/
   .website-entries__element {
     border: 0.1rem solid $black;
+    cursor: default;
     margin: 1rem;
     padding: 0.5rem;
-    pointer-events: none;
+    position: relative;
   }
 
   &.website-entries--hidden .website-entries__element {
@@ -154,5 +155,22 @@ list "website entries"
 
   .website-entries__element .element__icon {
     max-height: 2.5rem;
+  }
+
+  .website-entries__element .element__delete {
+    @include roboto(300, 1rem, false, italic);
+    border: 0.15rem solid $primary--dark;
+    border-radius: 0.4rem;
+    color: $primary--dark;
+    cursor: pointer;
+    padding: 0.2rem;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .website-entries__element .element__delete:hover {
+    background-color: darken($primary, 5);
   }
 }
