@@ -31,7 +31,6 @@ class SettingsController extends AbstractController {
             autoHideMenuBar: true,
             show: false,
             title: this.title,
-            // icon: this.iconPath,
             webPreferences: {
                 spellcheck: true,
                 preload: path.join(this.appDir, 'frontend', 'preload.js'),
@@ -58,6 +57,13 @@ class SettingsController extends AbstractController {
             electronSettings.setSync('user.websites', []);
             event.sender.send(wwEvents.SETTINGS_WINDOW_REQ_REMOVE_WEBSITES_RESPONSE.toString(), true);
         });
+
+        ipcMain.on(wwEvents.SETTINGS_WINDOW_REQ_REMOVE_WEBSITE_ENTRY.toString(), (event, id) => {
+            const websites = electronSettings.getSync('user.websites');
+            const wsFiltered = websites?.filter(ws => ws.id !== id);
+            electronSettings.setSync('user.websites', wsFiltered);
+            event.sender.send(wwEvents.SETTINGS_WINDOW_REQ_REMOVE_WEBSITE_ENTRY_RESPONSE.toString(), true);
+        })
     }
 
     /**

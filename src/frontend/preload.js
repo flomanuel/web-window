@@ -18,9 +18,17 @@ class SettingsPreload {
         contextBridge.exposeInMainWorld('electron', {
             'websiteEntries': websites,
             'clearWebsites': () => {
-                ipcRenderer.send(wwEvents.SETTINGS_WINDOW_REQ_REMOVE_WEBSITES.toString(),)
+                ipcRenderer.send(wwEvents.SETTINGS_WINDOW_REQ_REMOVE_WEBSITES.toString())
                 return new Promise(resolve => {
                     ipcRenderer.on(wwEvents.SETTINGS_WINDOW_REQ_REMOVE_WEBSITES_RESPONSE.toString(), (e, args) => {
+                        resolve(args);
+                    })
+                })
+            },
+            'removeWebsiteEntry': (id) => {
+                ipcRenderer.send(wwEvents.SETTINGS_WINDOW_REQ_REMOVE_WEBSITE_ENTRY.toString(), id)
+                return new Promise(resolve => {
+                    ipcRenderer.on(wwEvents.SETTINGS_WINDOW_REQ_REMOVE_WEBSITE_ENTRY_RESPONSE.toString(), (e, args) => {
                         resolve(args);
                     })
                 })
