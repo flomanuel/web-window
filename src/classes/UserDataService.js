@@ -10,7 +10,7 @@ class UserDataService {
     }
 
     static load() {
-        window.electron.websiteEntries.then(result => {
+        window.electron.websiteEntries().then(result => {
             UserDataService.subject.next(result);
         }).catch(e => {
             throw `Error loading user data: ${e}`
@@ -23,7 +23,7 @@ class UserDataService {
 
     static clearData() {
         window.electron.clearWebsites().then(() => {
-            UserDataService.subject.next({});
+            UserDataService.load();
         })
     }
 

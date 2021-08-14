@@ -16,7 +16,7 @@ class Settings extends Component {
 
     componentDidMount() {
         if (!this.subscription) {
-            this.subscription = userDataService.onDataChange.subscribe(userData => {
+            this.subscription = userDataService.onDataChange().subscribe(userData => {
                 this.setState(({userData: userData}))
             });
         }
@@ -32,9 +32,7 @@ class Settings extends Component {
         return (
             <div className="Settings">
                 <header className="header">Settings
-                    <div className="button" id="clearData" onClick={() => {
-                        userDataService.clearData();
-                    }}>Clear Data</div>
+                    <div className="button" id="clearData" onClick={userDataService.clearData}>Clear Data</div>
                 </header>
                 <WebsiteEntriesList userData={this.state.userData}/>
                 <FormNewData/>

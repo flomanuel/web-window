@@ -8,15 +8,15 @@ class SettingsPreload {
     }
 
     prepareEvents() {
-        ipcRenderer.send(wwEvents.SETTINGS_WINDOW_REQ_SETTINGS.toString());
-        const websites = new Promise(resolve => {
-            ipcRenderer.on(wwEvents.SETTINGS_WINDOW_REQ_SETTINGS_RESPONSE.toString(), (e, args) => {
-                resolve(args && args.websites ? args.websites : [])
-            })
-        });
-
         contextBridge.exposeInMainWorld('electron', {
-            'websiteEntries': websites,
+            'websiteEntries': () => {
+                ipcRenderer.send(wwEvents.SETTINGS_WINDOW_REQ_SETTINGS.toString());
+                return new Promise(resolve => {
+                    ipcRenderer.on(wwEvents.SETTINGS_WINDOW_REQ_SETTINGS_RESPONSE.toString(), (e, args) => {
+                        resolve(args && args.websites ? args.websites : [])
+                    })
+                });
+            },
             'clearWebsites': () => {
                 ipcRenderer.send(wwEvents.SETTINGS_WINDOW_REQ_REMOVE_WEBSITES.toString())
                 return new Promise(resolve => {
