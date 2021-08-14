@@ -5,7 +5,9 @@ const wwEvents = Object.freeze({
         SETTINGS_WINDOW_REQ_SAVE_SETTINGS: Symbol("request to save new settings entry"),
         SETTINGS_WINDOW_REQ_SAVE_SETTINGS_RESPONSE: Symbol("response telling that the new settings were saved"),
         SETTINGS_WINDOW_REQ_REMOVE_WEBSITES: Symbol("request to remove all windows from user-settings"),
-        SETTINGS_WINDOW_REQ_REMOVE_WEBSITES_RESPONSE: Symbol("response telling that all windows from user-settings were deleted")
+        SETTINGS_WINDOW_REQ_REMOVE_WEBSITES_RESPONSE: Symbol("response telling that all windows from user-settings were deleted"),
+        SETTINGS_WINDOW_REQ_REMOVE_WEBSITE_ENTRY: Symbol("request to remove on website entry"),
+        SETTINGS_WINDOW_REQ_REMOVE_WEBSITE_ENTRY_RESPONSE: Symbol("response telling that website with the given id was deleted"),
     }
 )
 module.exports = wwEvents;

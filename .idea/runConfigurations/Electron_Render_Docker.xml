@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Electron Render" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" port="9223" restartOnDisconnect="true">
+  <configuration default="false" name="Electron Render Docker" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" port="9223" restartOnDisconnect="true">
     <mapping url="/opt/project" local-file="$PROJECT_DIR$" />
     <method v="2" />
   </configuration>

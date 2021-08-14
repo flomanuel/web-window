@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import toggleIcon from "../../../assets/icons/toggle.svg";
+import userDataService from "../../../classes/UserDataService"
 
 class FormNewData extends Component {
 
@@ -19,14 +20,7 @@ class FormNewData extends Component {
         const title = document.getElementById('ww_title').value;
         // @ts-ignore
         const url = document.getElementById('ww_url').value;
-        // @ts-ignore
-        window.electron.saveNewEntry(title ? title : 'Title', url ? url : 'https://www.google.de', this.imgPath).then((value) => {
-            if (value) {
-                window.location.reload(); // todo: change data handling to avoid reload (e.g. keep all data in render process, only communicate with main process over preload file to save the data held by the render process)
-            } else {
-                throw `Error saving new entry.`
-            }
-        })
+        userDataService.saveNewEntry(title, url, this.imgPath);
     }
 
     /**
