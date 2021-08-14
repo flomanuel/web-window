@@ -63,3 +63,10 @@ This project uses different images. Please see each images' license when using t
   last accessed 03.06.2021 00:21)
 - [All other icons / emojis were designed by OpenMoji – the open-source emoji and icon project. License: CC BY-SA 4.0](https://github.com/hfg-gmuend/openmoji) (
   last accessed 04.06.2021 10:36)
+
+### Font credits
+
+This project uses different fonts. Please see each fonts' license when using them.
+
+- [Noto Sans JP](./src/assets/fonts/noto-sans-jp/LICENSE.txt)
+- [Roboto](./src/assets/fonts/roboto/LICENSE.txt)
