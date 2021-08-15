@@ -10,7 +10,7 @@ class UserDataService {
     }
 
     static load() {
-        window.electron.websiteEntries().then(result => {
+        window.electron.userSettings().then(result => {
             UserDataService.subject.next(result);
         }).catch(e => {
             throw `Error loading user data: ${e}`
@@ -34,7 +34,7 @@ class UserDataService {
         }
     }
 
-    static saveNewEntry(title, url, imgPath) {
+    static saveNewWebsiteEntry(title, url, imgPath) {
         window.electron.saveNewEntry(title ? title : 'Title', url ? url : 'https://www.google.de', imgPath).then((value) => {
             if (value) {
                 UserDataService.load();

@@ -1,20 +1,29 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import toggleIcon from "../../../assets/icons/toggle.svg";
 import "../../styles/parts/website-entries-list.scss";
 import WebsiteEntry from "./website-entry";
+import userDataService from "../../../classes/UserDataService";
 
 class WebsiteEntriesList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {visibilityList: true};
+        this.subscription = null;
+        this.state = {visibilityList: true, userData: null};
     }
 
-    static get propTypes() {
-        return {
-            userData: PropTypes.object,
-        };
+    componentDidMount() {
+        if (!this.subscription) {
+            this.subscription = userDataService.onDataChange().subscribe(userData => {
+                this.setState({userData: userData})
+            });
+        }
+        userDataService.load();
+    }
+
+    componentWillUnmount() {
+        this.subscription.unsubscribe;
+        this.subscription = null;
     }
 
     render() {
@@ -30,7 +39,7 @@ class WebsiteEntriesList extends Component {
                     <span>List of entries</span>
                 </div>
                 {
-                    this.props.userData?.map((entry) => (
+                    this.state.userData?.websites?.map(entry => (
                         <WebsiteEntry key={entry.id ? entry.id : ''} entry={entry}/>
                     ))
                 }

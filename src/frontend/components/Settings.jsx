@@ -9,23 +9,8 @@ class Settings extends Component {
 
     constructor(props) {
         super(props);
-        this.subscription = null;
         this.imgPath = null;
-        this.state = {visibilityForm: false, visibilityList: true, userData: null};
-    }
-
-    componentDidMount() {
-        if (!this.subscription) {
-            this.subscription = userDataService.onDataChange().subscribe(userData => {
-                this.setState(({userData: userData}))
-            });
-        }
-        userDataService.load();
-    }
-
-    componentWillUnmount() {
-        this.subscription.unsubscribe;
-        this.subscription = null;
+        this.state = {visibilityForm: false, visibilityList: true};
     }
 
     render() {
@@ -34,7 +19,7 @@ class Settings extends Component {
                 <header className="header">Settings
                     <div className="button" id="clearData" onClick={userDataService.clearData}>Clear Data</div>
                 </header>
-                <WebsiteEntriesList userData={this.state.userData}/>
+                <WebsiteEntriesList/>
                 <FormNewEntry/>
             </div>
         )
