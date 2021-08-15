@@ -1,0 +1,43 @@
+/******* table of contents *******
+imports
+global setup
+list "website entries"
+**********************************/
+
+/**********************************
+imports
+**********************************/
+@import '../general/color';
+@import '../general/fonts';
+
+/**********************************
+global setup
+**********************************/
+
+/**********************************
+list
+**********************************/
+#website-entries {
+  > .website-entries__toggle {
+    border-bottom: 0.1rem solid $black;
+    cursor: pointer;
+  }
+
+  > .website-entries__toggle > span {
+    pointer-events: none;
+    transform: rotateZ(90deg);
+  }
+
+  > .website-entries__toggle > img {
+    height: 2rem;
+    width: auto;
+  }
+
+  &:not(.website-entries--hidden) > .website-entries__toggle > img {
+    transform: rotateZ(90deg);
+  }
+
+  &.website-entries--hidden > .website-entries__toggle > img {
+    transform: rotateZ(-90deg);
+  }
+}

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import toggleIcon from "../../../assets/icons/toggle.svg";
+import "../../styles/parts/website-entries-list.scss";
 import WebsiteEntry from "./website-entry";
 
 class WebsiteEntriesList extends Component {

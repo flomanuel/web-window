@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import toggleIcon from "../../../assets/icons/toggle.svg";
 import userDataService from "../../../classes/UserDataService"
+import "../../styles/parts/form-new-entry.scss";
 
-class FormNewData extends Component {
+class FormNewEntry extends Component {
 
     constructor(props) {
         super(props);
@@ -73,4 +74,4 @@ class FormNewData extends Component {
     }
 }
 
-export default FormNewData;
+export default FormNewEntry;

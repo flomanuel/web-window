@@ -55,7 +55,6 @@ module.exports = {
     optimization: {
         minimize: !isDev,
         minimizer: [
-            `...`,
             new CssMinimizerPlugin({
                 minimizerOptions: {
                     preset: [

@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import "../styles/general/fontfaces.scss";
-import "../styles/index.scss";
+import "../styles/settings.scss";
 import WebsiteEntriesList from "./parts/website-entries-list";
-import FormNewData from "./parts/form-new-data";
+import FormNewEntry from "./parts/form-new-entry";
 import userDataService from "../../classes/UserDataService"
 
 class Settings extends Component {
@@ -35,7 +35,7 @@ class Settings extends Component {
                     <div className="button" id="clearData" onClick={userDataService.clearData}>Clear Data</div>
                 </header>
                 <WebsiteEntriesList userData={this.state.userData}/>
-                <FormNewData/>
+                <FormNewEntry/>
             </div>
         )
     }

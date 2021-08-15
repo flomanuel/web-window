@@ -24,7 +24,6 @@ module.exports = {
     optimization: {
         minimize: !isDev,
         minimizer: [
-            `...`,
             new TerserPlugin({
                 terserOptions: {
                     format: {

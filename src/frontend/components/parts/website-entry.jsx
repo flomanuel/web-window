@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import userDataService from "../../../classes/UserDataService"
+import "../../styles/parts/website-entry.scss";
 
 class WebsiteEntry extends Component {
 
