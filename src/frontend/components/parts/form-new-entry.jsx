@@ -7,8 +7,7 @@ class FormNewEntry extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {visibilityForm: false};
-        this.imgPath = '';
+        this.state = {visibilityForm: false, title: '', url: '', imgPath: ''};
     }
 
     preventDefaultPropagation(e) {
@@ -17,11 +16,7 @@ class FormNewEntry extends Component {
     }
 
     saveNewEntry() {
-        // @ts-ignore
-        const title = document.getElementById('ww_title').value;
-        // @ts-ignore
-        const url = document.getElementById('ww_url').value;
-        userDataService.saveNewEntry(title, url, this.imgPath);
+        userDataService.saveNewWebsiteEntry(this.state.title, this.state.url, this.state.imgPath);
     }
 
     /**
@@ -37,9 +32,21 @@ class FormNewEntry extends Component {
             if (!file.type.startsWith('image/png')) {
                 throw 'Error saving icon. Wrong format.'
             } else {
-                this.imgPath = file.path;
+                this.setState({imgPath: file.path});
             }
         }
+    }
+
+    handleChange({target}) {
+        this.setState({[target.name]: target.value});
+    }
+
+    previewIcon() {
+        let html = 'Drop png image here.';
+        if (this.state.imgPath !== '') {
+            html = <img src={this.state.imgPath} alt="Preview of the uploaded png-icon for the new website entry"/>
+        }
+        return html
     }
 
     render() {
@@ -56,18 +63,32 @@ class FormNewEntry extends Component {
                 </div>
                 <div className="form-new-entry__elements">
                     <label htmlFor="ww_title">Title:</label>
-                    <input type="text" id="ww_title" name="ww_title"/>
+                    <input type="text"
+                           id="ww_title"
+                           name="title"
+                           value={this.state.title}
+                           onChange={e => this.handleChange(e)}
+                    />
                     <label htmlFor="ww_url">URL:</label>
-                    <input type="text" id="ww_url" name="ww_url"/>
+                    <input type="text"
+                           id="ww_url"
+                           name="url"
+                           value={this.state.url}
+                           onChange={e => this.handleChange(e)}
+                    />
                     <div className="ww-img"
                          onDragEnter={e => this.preventDefaultPropagation(e)}
                          onDragOver={e => this.preventDefaultPropagation(e)}
                          onDragLeave={e => this.preventDefaultPropagation(e)}
                          onDrop={e => this.persistIconPath(e)}
-                    >Drop png image here.
+                    >
+                        {this.previewIcon()}
                     </div>
                     <br/>
-                    <button type="button" className="ww-button" onClick={() => this.saveNewEntry()}>Save</button>
+                    <button type="button"
+                            className="ww-button"
+                            onClick={() => this.saveNewEntry()}>Save
+                    </button>
                 </div>
             </form>
         );
