@@ -2,6 +2,7 @@
 imports
 global setup
 header
+buttons
 **********************************/
 
 /**********************************
@@ -43,5 +44,28 @@ header
 
   .button#clearData:hover {
     background-color: darken($primary, 5);
+  }
+}
+
+/**********************************
+buttons
+**********************************/
+.button#newEntry {
+  background-color: $accent;
+  border-radius: 50%;
+  bottom: 1rem;
+  display: block;
+  height: 4rem;
+  padding: 0.4rem;
+  position: fixed;
+  right: 1rem;
+  width: 4rem;
+
+  &:not(:hover) {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  }
+
+  > img {
+    transform: rotateZ(45deg);
   }
 }

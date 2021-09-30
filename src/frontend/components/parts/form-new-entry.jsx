@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import toggleIcon from "../../../assets/icons/toggle.svg";
 import userDataService from "../../../classes/UserDataService"
 import "../../styles/parts/form-new-entry.scss";
 
@@ -7,7 +6,7 @@ class FormNewEntry extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {visibilityForm: false, title: '', url: '', imgPath: ''};
+        this.state = {title: '', url: '', imgPath: ''};
     }
 
     preventDefaultPropagation(e) {
@@ -51,16 +50,7 @@ class FormNewEntry extends Component {
 
     render() {
         return (
-            <form className={
-                !this.state.visibilityForm ? 'form-new-entry form-new-entry--hidden' : 'form-new-entry'
-            }>
-                <div className="form-new-entry__toggle" onClick={() => {
-                    this.setState(prevState => ({visibilityForm: !prevState.visibilityForm}))
-                }}>
-                    <img src={toggleIcon}
-                         alt="Click here to close the form and create a new entry."/>
-                    <span>Add new entry</span>
-                </div>
+            <form className="form-new-entry">
                 <div className="form-new-entry__elements">
                     <label htmlFor="ww_title">Title:</label>
                     <input type="text"

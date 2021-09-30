@@ -1,6 +1,7 @@
 /******* table of contents *******
 imports
 global setup
+buttons
 **********************************/
 
 /**********************************
@@ -12,3 +13,18 @@ imports
 /**********************************
 global setup
 **********************************/
+
+
+/**********************************
+buttons
+**********************************/
+.button#moveBack > img {
+  height: auto;
+  margin: -0.5rem;
+  padding-right: 0.5rem;
+  width: 2.5rem;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}

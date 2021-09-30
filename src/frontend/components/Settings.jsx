@@ -1,9 +1,10 @@
 import React, {Component} from "react";
+import {Link} from "react-router-dom";
 
 import "../styles/general/fontfaces.scss";
 import "../styles/settings.scss";
+import newElementIcon from "../../assets/icons/close.svg"; //todo: add actual icon
 import WebsiteEntriesList from "./parts/website-entries-list";
-import FormNewEntry from "./parts/form-new-entry";
 import userDataService from "../../classes/UserDataService"
 
 class Settings extends Component {
@@ -11,7 +12,7 @@ class Settings extends Component {
     constructor(props) {
         super(props);
         this.imgPath = null;
-        this.state = {visibilityForm: false, visibilityList: true};
+        this.state = {visibilityList: true};
     }
 
     render() {
@@ -21,7 +22,9 @@ class Settings extends Component {
                     <div className="button" id="clearData" onClick={userDataService.clearData}>Clear Data</div>
                 </header>
                 <WebsiteEntriesList/>
-                <FormNewEntry/>
+                <Link to="/new-entry" className="button" id="newEntry">
+                    <img src={newElementIcon} alt="plus icon for adding new entry"/>
+                </Link>
             </div>
         )
     }

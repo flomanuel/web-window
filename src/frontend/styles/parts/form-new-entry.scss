@@ -18,30 +18,6 @@ global setup
 form "new entry"
 **********************************/
 .form-new-entry {
-  /** head **/
-  > .form-new-entry__toggle {
-    border-bottom: 0.1rem solid $black;
-    cursor: pointer;
-  }
-
-  > .form-new-entry__toggle > span {
-    pointer-events: none;
-    transform: rotateZ(90deg);
-  }
-
-  > .form-new-entry__toggle > img {
-    height: 2rem;
-    width: auto;
-  }
-
-  &:not(.form-new-entry--hidden) > .form-new-entry__toggle > img {
-    transform: rotateZ(90deg);
-  }
-
-  &.form-new-entry--hidden > .form-new-entry__toggle > img {
-    transform: rotateZ(-90deg);
-  }
-
   /** elements **/
   .form-new-entry__elements {
     margin: 1.5rem;
