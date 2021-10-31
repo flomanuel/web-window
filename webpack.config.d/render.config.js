@@ -68,7 +68,7 @@ module.exports = {
             new TerserPlugin({
                 terserOptions: {
                     format: {
-                        comment: false
+                        comments: false
                     }
                 },
                 extractComments: false
