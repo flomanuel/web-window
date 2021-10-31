@@ -23,7 +23,15 @@ class FormNewEntry extends Component {
     }
 
     saveNewEntry() {
-        userDataService.saveNewWebsiteEntry(this.state.title, this.state.url, this.state.imgPath);
+        userDataService.saveNewWebsiteEntry(this.state.title, this.state.url, this.state.imgPath).then(result => {
+            if (result) {
+                this.resetEntries();
+            }
+        });
+    }
+
+    resetEntries() {
+        this.setState({title: '', url: '', imgPath: ''})
     }
 
     /**

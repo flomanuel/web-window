@@ -35,13 +35,17 @@ class UserDataService {
     }
 
     static saveNewWebsiteEntry(title, url, imgPath) {
-        window.electron.saveNewEntry(title ? title : 'Title', url ? url : 'https://www.google.de', imgPath).then((value) => {
-            if (value) {
-                UserDataService.load();
-            } else {
-                throw `Error saving new entry.`
-            }
-        })
+        return new Promise(resolve => {
+            window.electron.saveNewEntry(title ? title : 'Title', url ? url : 'https://www.google.de', imgPath).then((value) => {
+                if (value) {
+                    UserDataService.load();
+                    resolve(true);
+                } else {
+                    resolve(false);
+                    throw `Error saving new entry.`
+                }
+            })
+        });
     }
 }
 
