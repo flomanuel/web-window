@@ -28,11 +28,22 @@ class WebsiteEntriesList extends Component {
     render() {
         return (
             <main id="website-entries">
-                {
-                    this.state.userData?.websites?.map(entry => (
-                        <WebsiteEntry key={entry.id ? entry.id : ''} entry={entry}/>
-                    ))
-                }
+                <table>
+                    <thead>
+                    <tr>
+                        <th>toggle</th>
+                        <th>entries</th>
+                        <th>export, delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        this.state.userData?.websites?.map(entry => (
+                            <WebsiteEntry key={entry.id ? entry.id : ''} entry={entry}/>
+                        ))
+                    }
+                    </tbody>
+                </table>
             </main>
         );
     }

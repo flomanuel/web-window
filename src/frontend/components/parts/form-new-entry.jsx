@@ -4,11 +4,19 @@ import "../../styles/parts/form-new-entry.scss";
 
 class FormNewEntry extends Component {
 
+    /**
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = {title: '', url: '', imgPath: ''};
     }
 
+    /**
+     *
+     * @param e
+     */
     preventDefaultPropagation(e) {
         e.stopPropagation();
         e.preventDefault();
@@ -36,10 +44,18 @@ class FormNewEntry extends Component {
         }
     }
 
+    /**
+     *
+     * @param target
+     */
     handleChange({target}) {
         this.setState({[target.name]: target.value});
     }
 
+    /**
+     *
+     * @return {string}
+     */
     previewIcon() {
         let html = 'Drop png image here.';
         if (this.state.imgPath !== '') {
@@ -48,6 +64,10 @@ class FormNewEntry extends Component {
         return html
     }
 
+    /**
+     *
+     * @return {JSX.Element}
+     */
     render() {
         return (
             <form className="form-new-entry">
