@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 import "../styles/general/fontfaces.scss";
 import "../styles/settings.scss";
-import newElementIcon from "../../assets/icons/close.svg"; //todo: add actual icon
+import newElementIcon from "../../assets/icons/add.svg";
 import WebsiteEntriesList from "./parts/website-entries-list";
 import userDataService from "../../classes/UserDataService"
 
