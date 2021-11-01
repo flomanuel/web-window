@@ -5,7 +5,6 @@ import "../styles/general/fontfaces.scss";
 import "../styles/settings.scss";
 import newElementIcon from "../../assets/icons/add.svg";
 import WebsiteEntriesList from "./parts/website-entries-list";
-import userDataService from "../../classes/UserDataService"
 
 class Settings extends Component {
 
@@ -18,9 +17,7 @@ class Settings extends Component {
     render() {
         return (
             <div className="Settings">
-                <header className="header">Settings
-                    <div className="button" id="clearData" onClick={userDataService.clearData}>Clear Data</div>
-                </header>
+                <header className="header">Settings</header>
                 <WebsiteEntriesList/>
                 <Link to="/new-entry" className="button" id="newEntry">
                     <img src={newElementIcon} alt="plus icon for adding new entry"/>

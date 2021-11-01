@@ -26,22 +26,6 @@ header
   padding: 8px;
   position: relative;
 
-  &:not(.button#clearData) {
-    color: $text--black;
-  }
-
-  .button#clearData {
-    @include roboto(300, 1rem, false, italic);
-    border: 0.15rem solid $primary--dark;
-    border-radius: 0.4rem;
-    color: $primary--dark;
-    cursor: pointer;
-    padding: 0.2rem;
-    position: absolute;
-    right: 0.5rem;
-    top: auto;
-  }
-
   .button#clearData:hover {
     background-color: darken($primary, 5);
   }
@@ -61,7 +45,7 @@ buttons
   right: 1rem;
   width: 4rem;
 
-  &:not(:hover) {
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  &:hover {
+    box-shadow: 0 3px 9px rgb(0 0 0 / 0.3);
   }
 }

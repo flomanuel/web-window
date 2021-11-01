@@ -24,7 +24,7 @@ class WebsiteEntry extends Component {
     render() {
         const entry = this.props?.entry;
         return (
-            <tr key={entry.id ? entry.id : null} className="website-entries__element">
+            <tr key={entry.id ? entry.id : null} className="website-entries__element website-entries__row website-entries__row--underline">
                 <td>toggle</td>
                 <td className="element__title">
                     <span className="element__title--text">{entry.title ? entry.title : 'Title'}</span>{entry.iconPath ?

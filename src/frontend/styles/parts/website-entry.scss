@@ -20,7 +20,7 @@ list element
 #website-entries {
   /** element **/
   .website-entries__element {
-    border: 0.1rem solid $black;
+    border-bottom: 1px solid $black;
     cursor: default;
     margin: 1rem;
     padding: 0.5rem;
@@ -52,9 +52,6 @@ list element
     color: $primary--dark;
     cursor: pointer;
     padding: 0.2rem;
-    position: absolute;
-    right: 1rem;
-    top: 50%;
     transform: translateY(-50%);
   }
 

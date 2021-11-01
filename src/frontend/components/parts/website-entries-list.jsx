@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import exportIcon from "../../../assets/icons/export.png";
+import deleteIcon from "../../../assets/icons/delete.svg";
 import "../../styles/parts/website-entries-list.scss";
 import WebsiteEntry from "./website-entry";
 import userDataService from "../../../classes/UserDataService";
@@ -31,9 +33,16 @@ class WebsiteEntriesList extends Component {
                 <table>
                     <thead>
                     <tr>
-                        <th>toggle</th>
-                        <th>entries</th>
-                        <th>export, delete</th>
+                        <th className="website-entries__data--align-left">
+                            <input className="website-entries__checkbox" type="checkbox"/>
+                            <span>Entries</span>
+                        </th>
+                        <th className="website-entries__data--align-right">
+                            <img className="website-entries__export-icon" src={exportIcon}
+                                 alt="icon for exporting the selected entries"/>
+                            <img onClick={userDataService.clearData} className="website-entries__delete-icon"
+                                 src={deleteIcon} alt="icon for deleting the selected entries"/>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>

@@ -1,5 +1,9 @@
 /******* table of contents *******
 imports
+global setup
+table
+table head
+table row
 **********************************/
 
 /**********************************
@@ -11,3 +15,58 @@ imports
 /**********************************
 global setup
 **********************************/
+
+/**********************************
+table
+**********************************/
+#website-entries > table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.website-entries__data {
+  &--align-left {
+    text-align: left;
+  }
+
+  &--align-right {
+    text-align: right;
+  }
+}
+
+/**********************************
+table head
+**********************************/
+#website-entries th {
+  @include roboto(300, 2rem, false);
+  border-bottom: 0.1rem solid $black;
+}
+
+.website-entries__checkbox {
+  height: 2rem;
+  margin: 0 0.5rem 0 0;
+  vertical-align: bottom;
+  width: 2rem;
+}
+
+#website-entries .website-entries__delete-icon,
+#website-entries .website-entries__export-icon {
+  cursor: pointer;
+}
+
+#website-entries .website-entries__delete-icon {
+  width: 4rem;
+
+  &:hover {
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));
+  }
+}
+
+#website-entries .website-entries__export-icon {
+  padding-bottom: 0.5rem;
+  width: 3rem;
+
+  &:hover {
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));
+  }
+}
