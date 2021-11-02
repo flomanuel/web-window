@@ -3,7 +3,6 @@ imports
 global setup
 table
 table head
-table row
 **********************************/
 
 /**********************************
@@ -17,36 +16,11 @@ global setup
 **********************************/
 
 /**********************************
-table
-**********************************/
-#website-entries > table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.website-entries__data {
-  &--align-left {
-    text-align: left;
-  }
-
-  &--align-right {
-    text-align: right;
-  }
-}
-
-/**********************************
 table head
 **********************************/
 #website-entries th {
   @include roboto(300, 2rem, false);
   border-bottom: 0.1rem solid $black;
-}
-
-.website-entries__checkbox {
-  height: 2rem;
-  margin: 0 0.5rem 0 0;
-  vertical-align: bottom;
-  width: 2rem;
 }
 
 #website-entries .website-entries__delete-icon,

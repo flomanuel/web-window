@@ -1,7 +1,7 @@
 /******* table of contents *******
 imports
 global setup
-TBD
+list element
 **********************************/
 
 /**********************************
@@ -20,7 +20,6 @@ list element
 #website-entries {
   /** element **/
   .website-entries__element {
-    border-bottom: 1px solid $black;
     cursor: default;
     margin: 1rem;
     padding: 0.5rem;
@@ -31,31 +30,37 @@ list element
     display: none;
   }
 
-  .website-entries__element > .element__title {
-    display: flex;
-    margin: 0;
+  .website-entries__element td {
+    @include roboto(300, 1.5rem, false);
+    border-bottom: 1px solid $light-grey;
   }
 
-  .website-entries__element > .element__title--text {
-    margin: auto 0;
-    padding-right: 0.5rem;
-  }
-
-  .website-entries__element .element__icon {
+  .website-entries__element .element__data--icon {
+    display: inline-block;
     max-height: 2.5rem;
+    padding: 0 0.5rem 0 0;
   }
 
-  .website-entries__element .element__delete {
-    @include roboto(300, 1rem, false, italic);
-    border: 0.15rem solid $primary--dark;
-    border-radius: 0.4rem;
-    color: $primary--dark;
+  .website-entries__element .element__data--title {
+    display: inline-block;
+    padding: 0 0.5rem 0 0;
+  }
+
+  .website-entries__element .element__data--url {
+    display: inline-block;
+    padding: 0 0.5rem 0 0;
+  }
+
+  .website-entries__element .element__buttons--edit,
+  .website-entries__element .element__buttons--delete {
     cursor: pointer;
-    padding: 0.2rem;
-    transform: translateY(-50%);
+    display: inline-block;
+    width: 4rem;
   }
 
-  .website-entries__element .element__delete:hover {
-    background-color: darken($primary, 5);
+  .website-entries__element .element__buttons--edit:hover,
+  .website-entries__element .element__buttons--delete:hover {
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));
   }
+
 }

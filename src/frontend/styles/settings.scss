@@ -3,6 +3,7 @@ imports
 global setup
 header
 buttons
+website entries table
 **********************************/
 
 /**********************************
@@ -48,4 +49,30 @@ buttons
   &:hover {
     box-shadow: 0 3px 9px rgb(0 0 0 / 0.3);
   }
+}
+
+/**********************************
+table
+**********************************/
+#website-entries > table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.website-entries__data,
+.website-entries__element {
+  &--align-left {
+    text-align: left;
+  }
+
+  &--align-right {
+    text-align: right;
+  }
+}
+
+.website-entries__checkbox {
+  height: 2rem;
+  margin: 0 0.5rem 0 0;
+  vertical-align: bottom;
+  width: 2rem;
 }
