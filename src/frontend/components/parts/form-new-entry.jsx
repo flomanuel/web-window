@@ -95,7 +95,7 @@ class FormNewEntry extends Component {
                         />
                         <label htmlFor="ww_title">Title...</label>
                     </div>
-                    <div className="form-new-entry__element form-new-entry__elements--url">
+                    <div className="form-new-entry__element">
                         <input type="text"
                                id="ww_url"
                                name="url"
@@ -104,7 +104,7 @@ class FormNewEntry extends Component {
                         />
                         <label htmlFor="ww_url">URL...</label>
                     </div>
-                    <div className="form-new-entry__element form-new-entry__elements--img">
+                    <div className="form-new-entry__element">
                         <div className="ww-img"
                              onDragEnter={e => this.preventDefaultPropagation(e)}
                              onDragOver={e => this.preventDefaultPropagation(e)}
