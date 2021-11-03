@@ -45,20 +45,21 @@ form "new entry" element
 
   .form-new-entry__element > input ~ label {
     position: absolute;
-    transition: top 125ms, padding-left 125ms;
+    transition: top 200ms, padding-left 200ms, font-size 250ms;
   }
 
   .form-new-entry__element > input:focus ~ label {
-    top: -1rem;
-  }
-
-  .form-new-entry__element > input:focus {
-    outline: none;
+    @include noto-sans-jp(300, 1rem, false);
+    top: -0.5rem;
   }
 
   .form-new-entry__element > input:not(:focus) ~ label {
     padding-left: 0.5rem;
     top: 0;
+  }
+
+  .form-new-entry__element > input:focus {
+    outline: none;
   }
 
   .form-new-entry__element > input {
