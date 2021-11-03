@@ -22,7 +22,12 @@ class FormNewEntry extends Component {
         e.preventDefault();
     }
 
-    saveNewEntry() {
+    /**
+     *
+     * @param event
+     */
+    saveNewEntry(event) {
+        event.preventDefault();
         userDataService.saveNewWebsiteEntry(this.state.title, this.state.url, this.state.imgPath).then(result => {
             if (result) {
                 this.resetEntries();
@@ -62,12 +67,13 @@ class FormNewEntry extends Component {
 
     /**
      *
-     * @return {string}
+     * @return {JSX.Element}
      */
     previewIcon() {
-        let html = 'Drop png image here.';
+        let html = <span className="ww-img__placeholder">Drop png image here...</span>;
         if (this.state.imgPath !== '') {
-            html = <img src={this.state.imgPath} alt="Preview of the uploaded png-icon for the new website entry"/>
+            html = <img className="ww-img__element" src={this.state.imgPath}
+                        alt="Preview of the uploaded png-icon for the new website entry"/>
         }
         return html
     }
@@ -78,35 +84,36 @@ class FormNewEntry extends Component {
      */
     render() {
         return (
-            <form className="form-new-entry">
+            <form className="form-new-entry" onSubmit={this.saveNewEntry.bind(this)}>
                 <div className="form-new-entry__elements">
-                    <label htmlFor="ww_title">Title:</label>
-                    <input type="text"
-                           id="ww_title"
-                           name="title"
-                           value={this.state.title}
-                           onChange={e => this.handleChange(e)}
-                    />
-                    <label htmlFor="ww_url">URL:</label>
-                    <input type="text"
-                           id="ww_url"
-                           name="url"
-                           value={this.state.url}
-                           onChange={e => this.handleChange(e)}
-                    />
-                    <div className="ww-img"
-                         onDragEnter={e => this.preventDefaultPropagation(e)}
-                         onDragOver={e => this.preventDefaultPropagation(e)}
-                         onDragLeave={e => this.preventDefaultPropagation(e)}
-                         onDrop={e => this.persistIconPath(e)}
-                    >
-                        {this.previewIcon()}
+                    <div className="form-new-entry__element form-new-entry__element--title">
+                        <input type="text"
+                               id="ww_title"
+                               name="title"
+                               value={this.state.title}
+                               onChange={this.handleChange.bind(this)}
+                        />
+                        <label htmlFor="ww_title">Title...</label>
                     </div>
-                    <br/>
-                    <button type="button"
-                            className="ww-button"
-                            onClick={() => this.saveNewEntry()}>Save
-                    </button>
+                    <div className="form-new-entry__element form-new-entry__elements--url">
+                        <input type="text"
+                               id="ww_url"
+                               name="url"
+                               value={this.state.url}
+                               onChange={this.handleChange.bind(this)}
+                        />
+                        <label htmlFor="ww_url">URL...</label>
+                    </div>
+                    <div className="form-new-entry__element form-new-entry__elements--img">
+                        <div className="ww-img"
+                             onDragEnter={e => this.preventDefaultPropagation(e)}
+                             onDragOver={e => this.preventDefaultPropagation(e)}
+                             onDragLeave={e => this.preventDefaultPropagation(e)}
+                             onDrop={e => this.persistIconPath(e)}>
+                            {this.previewIcon()}
+                        </div>
+                    </div>
+                    <input type="submit" className="ww-button"/>
                 </div>
             </form>
         );

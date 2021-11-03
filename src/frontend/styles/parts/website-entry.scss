@@ -31,7 +31,7 @@ list element
   }
 
   .website-entries__element td {
-    @include roboto(300, 1.5rem, false);
+    @include noto-sans-jp(300, 1.5rem, false);
     border-bottom: 1px solid $light-grey;
   }
 

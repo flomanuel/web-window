@@ -32,5 +32,9 @@ font mixin "Roboto"
 font mixin "Noto Sans JP"
 **********************************/
 @mixin noto-sans-jp($font-weight, $font-size, $line-height, $font-style: normal) {
-  font: $font-style $font-weight $font-size/$line-height $font-noto-sans-jp;
+  @if $line-height == false {
+    font: $font-style $font-weight $font-size/normal $font-noto-sans-jp;
+  } @else {
+    font: $font-style $font-weight $font-size/$line-height $font-noto-sans-jp;
+  }
 }

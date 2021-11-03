@@ -1,7 +1,8 @@
 /******* table of contents *******
 imports
 global setup
-form "new entry"
+form "new entry" elements
+form "new entry" element
 **********************************/
 
 /**********************************
@@ -15,10 +16,9 @@ global setup
 **********************************/
 
 /**********************************
-form "new entry"
+form "new entry" elements
 **********************************/
 .form-new-entry {
-  /** elements **/
   .form-new-entry__elements {
     margin: 1.5rem;
   }
@@ -26,20 +26,81 @@ form "new entry"
   &.form-new-entry--hidden .form-new-entry__elements {
     display: none;
   }
+}
 
-  .form-new-entry__elements #ww_url,
-  .form-new-entry__elements #ww_title {
+/**********************************
+form "new entry" element
+**********************************/
+.form-new-entry {
+  .ww-button,
+  .form-new-entry__element {
+    @include noto-sans-jp(300, 1.5rem, false);
+  }
+
+  .form-new-entry__element {
+    color: $light-grey;
+    margin: 0 0 1rem;
+    position: relative;
+  }
+
+  .form-new-entry__element > input ~ label {
+    position: absolute;
+    transition: top 125ms, padding-left 125ms;
+  }
+
+  .form-new-entry__element > input:focus ~ label {
+    top: -1rem;
+  }
+
+  .form-new-entry__element > input:focus {
+    outline: none;
+  }
+
+  .form-new-entry__element > input:not(:focus) ~ label {
+    padding-left: 0.5rem;
+    top: 0;
+  }
+
+  .form-new-entry__element > input {
+    border-bottom: 0.1rem solid $light-grey;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    height: 1.5rem;
+  }
+
+  .form-new-entry__element #ww_url,
+  .form-new-entry__element #ww_title {
     width: 100%;
   }
 
-  .form-new-entry__elements .ww-img {
-    border: 0.1rem dashed $black;
+  .form-new-entry__element .ww-img {
+    border: 0.1rem solid $light-grey;
+    box-sizing: border-box;
     cursor: pointer;
     height: 10rem;
     width: 100%;
   }
 
-  .form-new-entry__elements .ww-button {
+  .form-new-entry__element .ww-img__placeholder {
     display: block;
+    padding: 0.5rem;
+  }
+
+  .form-new-entry__elements .ww-button {
+    background-color: lighten($light-grey, 10%);
+    border: 0 solid $black;
+    color: darken($light-grey, 10%);
+    display: block;
+    padding: 0.25rem 0.75rem;
+
+  }
+
+  .form-new-entry__elements .ww-button:hover {
+    box-shadow: 1px 2px 7px rgb(0 0 0 / 0.3);
+  }
+
+  .form-new-entry__elements .ww-button:focus {
+    outline: none;
   }
 }
