@@ -21,19 +21,25 @@ class UserDataService {
         return UserDataService.subject.asObservable();
     }
 
-    static clearData() {
-        window.electron.clearWebsites().then(() => {
-            UserDataService.load();
-        })
-    }
-
-    static removeWebsiteEntry(id) {
+    /**
+     *
+     * @param id
+     * @return {Promise<void>}
+     */
+    static async removeWebsiteEntry(id) {
         if (id) {
-            window.electron.removeWebsiteEntry(id)
+            await window.electron.removeWebsiteEntry(id)
             UserDataService.load();
         }
     }
 
+    /**
+     *
+     * @param title
+     * @param url
+     * @param imgPath
+     * @return {Promise<unknown>}
+     */
     static saveNewWebsiteEntry(title, url, imgPath) {
         return new Promise(resolve => {
             window.electron.saveNewEntry(title ? title : 'Title', url ? url : 'https://www.google.de', imgPath).then((value) => {

@@ -25,20 +25,27 @@ table head
 
 #website-entries .website-entries__delete-icon,
 #website-entries .website-entries__export-icon {
-  cursor: pointer;
-}
+  &.website-entries__delete-icon--blocked,
+  &.website-entries__export-icon--blocked {
+    filter: opacity(0.2);
+    pointer-events: none;
+  }
 
-#website-entries .website-entries__delete-icon {
-  width: 4rem;
+  &:not(.website-entries__delete-icon--blocked),
+  &:not(.website-entries__export-icon--blocked) {
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+    width: 3rem;
+  }
 
-  &:hover {
+  &:not(.website-entries__delete-icon--blocked):hover,
+  &:not(.website-entries__export-icon--blocked):hover {
     filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));
   }
 }
 
-#website-entries .website-entries__export-icon {
-  padding-bottom: 0.5rem;
-  width: 3rem;
+#website-entries .website-entries__delete-icon {
+  width: 4rem;
 
   &:hover {
     filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));

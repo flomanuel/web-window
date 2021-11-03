@@ -8,6 +8,7 @@ class SettingsPreload {
     }
 
     prepareEvents() {
+        ipcRenderer.setMaxListeners(0);
         contextBridge.exposeInMainWorld('electron', {
             'userSettings': () => {
                 ipcRenderer.send(wwEvents.SETTINGS_WINDOW_REQ_SETTINGS.toString());

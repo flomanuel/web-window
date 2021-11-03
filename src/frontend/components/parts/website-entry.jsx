@@ -30,7 +30,8 @@ class WebsiteEntry extends Component {
             <tr key={entry.id ? entry.id : null}
                 className="website-entries__element">
                 <td className="element__data website-entries__element--align-left ">
-                    <input className="element__checkbox website-entries__checkbox" type="checkbox"
+                    <input className="element__checkbox website-entries__checkbox"
+                           type="checkbox"
                            checked={this.props.isSelected}
                            onChange={() => {
                                this.props.updateSelectedEntries(entry.id);
@@ -40,7 +41,8 @@ class WebsiteEntry extends Component {
                         {entry.title ? entry.title : 'Title'}
                     </div>
                     {entry.iconPath ?
-                        <img alt={'Icon of ' + entry.title ? entry.title : 'Title'} src={entry.iconPath}
+                        <img alt={'Icon of ' + entry.title ? entry.title : 'Title'}
+                             src={entry.iconPath}
                              className="element__data--icon"
                         />
                         : ''}
@@ -54,9 +56,11 @@ class WebsiteEntry extends Component {
                     </Link>
                     <img className="button element__buttons--delete"
                          alt="icon for deleting the entry" src={deleteIcon}
-                         onClick={() => {
+                         onClick={async () => {
                              if (entry.id) {
-                                 userDataService.removeWebsiteEntry(entry.id);
+                                 await userDataService.removeWebsiteEntry(entry.id);
+                                 this.props.updateSelectedEntries(entry.id);
+                                 this.forceUpdate();
                              } else {
                                  console.error("Couldn't delete entry because it has no id.");
                              }

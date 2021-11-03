@@ -4,6 +4,7 @@ import deleteIcon from "../../../assets/icons/delete.svg";
 import "../../styles/parts/website-entries-list.scss";
 import WebsiteEntry from "./website-entry";
 import userDataService from "../../../classes/UserDataService";
+import UserDataService from "../../../classes/UserDataService";
 
 class WebsiteEntriesList extends Component {
 
@@ -16,7 +17,6 @@ class WebsiteEntriesList extends Component {
         this.subscription = null;
         this.state = {userData: null};
         this.selectedEntries = [];
-        this.areAllEntriesChecked = false;
     }
 
     componentDidMount() {
@@ -35,6 +35,14 @@ class WebsiteEntriesList extends Component {
 
     /**
      *
+     * @return {boolean}
+     */
+    areAllEntriesChecked() {
+        return this.selectedEntries.length > 0 && this.selectedEntries.length === this.state.userData?.websites.length;
+    }
+
+    /**
+     *
      * @param eID
      */
     updateSelectedEntries(eID) {
@@ -42,10 +50,8 @@ class WebsiteEntriesList extends Component {
             this.selectedEntries = this.selectedEntries.filter(el => el !== eID);
         } else {
             this.selectedEntries.push(eID);
-            if (this.selectedEntries.length === this.state.userData?.websites.length) {
-                this.areAllEntriesChecked = true;
-            }
         }
+        this.forceUpdate(); //todo: Find better solution so we don't have to force an component update.
     }
 
     /**
@@ -60,31 +66,39 @@ class WebsiteEntriesList extends Component {
                     <thead>
                     <tr>
                         <th className="website-entries__data--align-left">
-                            <input className="website-entries__checkbox" type="checkbox"
-                                   checked={this.areAllEntriesChecked}
+                            <input className="website-entries__checkbox"
+                                   type="checkbox"
+                                   checked={this.areAllEntriesChecked()}
                                    onChange={() => {
                                        if (websites?.length === this.selectedEntries.length) {
                                            this.selectedEntries = [];
                                        } else {
                                            this.selectedEntries = websites?.map(ws => ws.id);
-                                           this.areAllEntriesChecked = true;
                                        }
+                                       this.forceUpdate();
                                    }}
                             />
                             <span>Entries</span>
                         </th>
                         <th className="website-entries__data--align-right">
-                            {
-                                websites?.length > 0 ?
-                                    <>
-                                        <img className="website-entries__export-icon" src={exportIcon}
-                                             alt="icon for exporting the selected entries"/>
-                                        <img onClick={userDataService.clearData}
-                                             className="website-entries__delete-icon"
-                                             src={deleteIcon} alt="icon for deleting the selected entries"/>
-                                    </>
-                                    : null
-                            }
+                            <img className={websites?.length <= 0
+                                ? "website-entries__export-icon website-entries__export-icon--blocked"
+                                : "website-entries__export-icon"}
+                                 src={exportIcon}
+                                 alt="icon for exporting the selected entries"
+                            />
+                            <img src={deleteIcon} alt="icon for deleting the selected entries"
+                                 onClick={() => {
+                                     this.selectedEntries.forEach(async eID => {
+                                         await UserDataService.removeWebsiteEntry(eID);
+                                         this.updateSelectedEntries(eID);
+                                     });
+                                     this.forceUpdate();
+                                 }}
+                                 className={websites?.length <= 0
+                                     ? "website-entries__delete-icon website-entries__delete-icon--blocked"
+                                     : "website-entries__delete-icon"}
+                            />
                         </th>
                     </tr>
                     </thead>
@@ -95,7 +109,8 @@ class WebsiteEntriesList extends Component {
                             return (
                                 <WebsiteEntry updateSelectedEntries={this.updateSelectedEntries.bind(this)}
                                               isSelected={isSelected}
-                                              key={entry.id ? entry.id : ''} entry={entry}/>
+                                              key={entry.id ? entry.id : ''} entry={entry}
+                                />
                             );
                         })
                     }
