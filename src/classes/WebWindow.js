@@ -24,7 +24,7 @@ class WebWindow {
         if (!lock) {
             app.quit();
         } else {
-            if (this.settings.user) {
+            if (!this.settings.user) {
                 electronSettings.setSync('user', {'websites': []});
                 electronSettings.setSync('version', process.env.npm_package_version);
                 this.settings = electronSettings.getSync();
