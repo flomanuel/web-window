@@ -1,10 +1,9 @@
 import React, {Component} from "react";
+import WebsiteEntry from "./website-entry";
+import UserDataService from "../../../classes/UserDataService";
+import "../../styles/parts/website-entries-list.scss";
 import exportIcon from "../../../assets/icons/export.png";
 import deleteIcon from "../../../assets/icons/delete.svg";
-import "../../styles/parts/website-entries-list.scss";
-import WebsiteEntry from "./website-entry";
-import userDataService from "../../../classes/UserDataService";
-import UserDataService from "../../../classes/UserDataService";
 
 class WebsiteEntriesList extends Component {
 
@@ -21,11 +20,11 @@ class WebsiteEntriesList extends Component {
 
     componentDidMount() {
         if (!this.subscription) {
-            this.subscription = userDataService.onDataChange().subscribe(userData => {
+            this.subscription = UserDataService.onDataChange().subscribe(userData => {
                 this.setState({userData: userData})
             });
         }
-        userDataService.load();
+        UserDataService.load();
     }
 
     componentWillUnmount() {
@@ -51,7 +50,23 @@ class WebsiteEntriesList extends Component {
         } else {
             this.selectedEntries.push(eID);
         }
-        this.forceUpdate(); //todo: Find better solution so we don't have to force an component update.
+        this.forceUpdate(); //todo: find better solution so we don't have to force an component update
+    }
+
+    exportSelectedEntries() { //todo: add info popup confirming export
+        if (this.selectedEntries.length > 0) {
+            const result = [];
+            this.selectedEntries.forEach(eID => {
+                this.state.userData?.websites.forEach(ws => {
+                    if (ws.id === eID) {
+                        result.push(ws);
+                    }
+                })
+            })
+            navigator.clipboard.writeText(JSON.stringify(result)).catch((e) => {
+                throw `Copying content to clipboard failed with the following error: ${e}`;
+            })
+        }
     }
 
     /**
@@ -86,6 +101,7 @@ class WebsiteEntriesList extends Component {
                                 : "website-entries__export-icon"}
                                  src={exportIcon}
                                  alt="icon for exporting the selected entries"
+                                 onClick={this.exportSelectedEntries.bind(this)}
                             />
                             <img src={deleteIcon} alt="icon for deleting the selected entries"
                                  onClick={() => {
