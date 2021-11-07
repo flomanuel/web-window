@@ -10,7 +10,7 @@ class UserDataService {
     }
 
     static load() {
-        window.electron.websiteEntries().then(result => {
+        window.electron.userSettings().then(result => {
             UserDataService.subject.next(result);
         }).catch(e => {
             throw `Error loading user data: ${e}`
@@ -21,27 +21,37 @@ class UserDataService {
         return UserDataService.subject.asObservable();
     }
 
-    static clearData() {
-        window.electron.clearWebsites().then(() => {
-            UserDataService.load();
-        })
-    }
-
-    static removeWebsiteEntry(id) {
+    /**
+     *
+     * @param id
+     * @return {Promise<void>}
+     */
+    static async removeWebsiteEntry(id) {
         if (id) {
-            window.electron.removeWebsiteEntry(id)
+            await window.electron.removeWebsiteEntry(id)
             UserDataService.load();
         }
     }
 
-    static saveNewEntry(title, url, imgPath) {
-        window.electron.saveNewEntry(title ? title : 'Title', url ? url : 'https://www.google.de', imgPath).then((value) => {
-            if (value) {
-                UserDataService.load();
-            } else {
-                throw `Error saving new entry.`
-            }
-        })
+    /**
+     *
+     * @param title
+     * @param url
+     * @param imgPath
+     * @return {Promise<unknown>}
+     */
+    static saveNewWebsiteEntry(title, url, imgPath) {
+        return new Promise(resolve => {
+            window.electron.saveNewEntry(title ? title : 'Title', url ? url : 'https://www.google.de', imgPath).then((value) => {
+                if (value) {
+                    UserDataService.load();
+                    resolve(true);
+                } else {
+                    resolve(false);
+                    throw `Error saving new entry.`
+                }
+            })
+        });
     }
 }
 

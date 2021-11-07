@@ -48,14 +48,13 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loader: "babel-loader",
-                options: {presets: ["@babel/env", "@babel/preset-react"]}
+                options: {presets: ["@babel/env", "@babel/preset-react"], plugins: ["@babel/plugin-transform-runtime"]}
             },
         ]
     },
     optimization: {
         minimize: !isDev,
         minimizer: [
-            `...`,
             new CssMinimizerPlugin({
                 minimizerOptions: {
                     preset: [
@@ -69,7 +68,7 @@ module.exports = {
             new TerserPlugin({
                 terserOptions: {
                     format: {
-                        comment: false
+                        comments: false
                     }
                 },
                 extractComments: false

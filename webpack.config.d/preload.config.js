@@ -24,11 +24,10 @@ module.exports = {
     optimization: {
         minimize: !isDev,
         minimizer: [
-            `...`,
             new TerserPlugin({
                 terserOptions: {
                     format: {
-                        comment: false
+                        comments: false
                     }
                 },
                 extractComments: false

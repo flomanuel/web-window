@@ -78,13 +78,25 @@ class SettingsController extends AbstractController {
         }
         userSettings?.websites.push(
             {
-                'url': args.url,
+                'url': this.formatUrl(args.url),
                 'iconPath': iconPath,
                 'title': args.title,
                 'id': args.id
             }
         );
         electronSettings.setSync('user', userSettings);
+    }
+
+    /**
+     *
+     * @param url
+     * @return {string}
+     */
+    formatUrl(url) {
+        if (!url.match(/(http)(s)?(:\/\/)/)) {
+            url = 'https://' + url
+        }
+        return url;
     }
 
     /**

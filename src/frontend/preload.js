@@ -8,12 +8,13 @@ class SettingsPreload {
     }
 
     prepareEvents() {
+        ipcRenderer.setMaxListeners(0);
         contextBridge.exposeInMainWorld('electron', {
-            'websiteEntries': () => {
+            'userSettings': () => {
                 ipcRenderer.send(wwEvents.SETTINGS_WINDOW_REQ_SETTINGS.toString());
                 return new Promise(resolve => {
                     ipcRenderer.on(wwEvents.SETTINGS_WINDOW_REQ_SETTINGS_RESPONSE.toString(), (e, args) => {
-                        resolve(args && args.websites ? args.websites : [])
+                        resolve(args ? args : {})
                     })
                 });
             },

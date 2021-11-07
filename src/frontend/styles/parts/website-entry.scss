@@ -1,0 +1,66 @@
+/******* table of contents *******
+imports
+global setup
+list element
+**********************************/
+
+/**********************************
+imports
+**********************************/
+@import '../general/color';
+@import '../general/fonts';
+
+/**********************************
+global setup
+**********************************/
+
+/**********************************
+list element
+**********************************/
+#website-entries {
+  /** element **/
+  .website-entries__element {
+    cursor: default;
+    margin: 1rem;
+    padding: 0.5rem;
+    position: relative;
+  }
+
+  &.website-entries--hidden .website-entries__element {
+    display: none;
+  }
+
+  .website-entries__element td {
+    @include noto-sans-jp(300, 1.5rem, false);
+    border-bottom: 1px solid $light-grey;
+  }
+
+  .website-entries__element .element__data--icon {
+    display: inline-block;
+    max-height: 2.5rem;
+    padding: 0 0.5rem 0 0;
+  }
+
+  .website-entries__element .element__data--title {
+    display: inline-block;
+    padding: 0 0.5rem 0 0;
+  }
+
+  .website-entries__element .element__data--url {
+    display: inline-block;
+    padding: 0 0.5rem 0 0;
+  }
+
+  .website-entries__element .element__buttons--edit,
+  .website-entries__element .element__buttons--delete {
+    cursor: pointer;
+    display: inline-block;
+    width: 4rem;
+  }
+
+  .website-entries__element .element__buttons--edit:hover,
+  .website-entries__element .element__buttons--delete:hover {
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));
+  }
+
+}

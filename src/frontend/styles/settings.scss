@@ -2,8 +2,8 @@
 imports
 global setup
 header
-form - new entry
-website entries
+buttons
+website entries table
 **********************************/
 
 /**********************************
@@ -27,150 +27,52 @@ header
   padding: 8px;
   position: relative;
 
-  &:not(.button#clearData) {
-    color: $text--black;
-  }
-
-  .button#clearData {
-    @include roboto(300, 1rem, false, italic);
-    border: 0.15rem solid $primary--dark;
-    border-radius: 0.4rem;
-    color: $primary--dark;
-    cursor: pointer;
-    padding: 0.2rem;
-    position: absolute;
-    right: 0.5rem;
-    top: auto;
-  }
-
   .button#clearData:hover {
     background-color: darken($primary, 5);
   }
 }
 
 /**********************************
-form "new entry"
+buttons
 **********************************/
-.form-new-entry {
-  /** head **/
-  > .form-new-entry__toggle {
-    border-bottom: 0.1rem solid $black;
-    cursor: pointer;
-  }
+.button#newEntry {
+  background-color: $accent;
+  border-radius: 50%;
+  bottom: 1rem;
+  display: block;
+  height: 4rem;
+  padding: 0.4rem;
+  position: fixed;
+  right: 1rem;
+  width: 4rem;
 
-  > .form-new-entry__toggle > span {
-    pointer-events: none;
-    transform: rotateZ(90deg);
-  }
-
-  > .form-new-entry__toggle > img {
-    height: 2rem;
-    width: auto;
-  }
-
-  &:not(.form-new-entry--hidden) > .form-new-entry__toggle > img {
-    transform: rotateZ(90deg);
-  }
-
-  &.form-new-entry--hidden > .form-new-entry__toggle > img {
-    transform: rotateZ(-90deg);
-  }
-
-  /** elements **/
-  .form-new-entry__elements {
-    margin: 1.5rem;
-  }
-
-  &.form-new-entry--hidden .form-new-entry__elements {
-    display: none;
-  }
-
-  .form-new-entry__elements #ww_url,
-  .form-new-entry__elements #ww_title {
-    width: 100%;
-  }
-
-  .form-new-entry__elements .ww-img {
-    border: 0.1rem dashed $black;
-    cursor: pointer;
-    height: 10rem;
-    width: 100%;
-  }
-
-  .form-new-entry__elements .ww-button {
-    display: block;
+  &:hover {
+    box-shadow: 1px 3px 9px rgb(0 0 0 / 0.3);
   }
 }
 
 /**********************************
-list "website entries"
+table
 **********************************/
-#website-entries {
-  /** head **/
-  > .website-entries__toggle {
-    border-bottom: 0.1rem solid $black;
-    cursor: pointer;
+#website-entries > table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.website-entries__data,
+.website-entries__element {
+  &--align-left {
+    text-align: left;
   }
 
-  > .website-entries__toggle > span {
-    pointer-events: none;
-    transform: rotateZ(90deg);
+  &--align-right {
+    text-align: right;
   }
+}
 
-  > .website-entries__toggle > img {
-    height: 2rem;
-    width: auto;
-  }
-
-  &:not(.website-entries--hidden) > .website-entries__toggle > img {
-    transform: rotateZ(90deg);
-  }
-
-  &.website-entries--hidden > .website-entries__toggle > img {
-    transform: rotateZ(-90deg);
-  }
-
-  /** element **/
-  .website-entries__element {
-    border: 0.1rem solid $black;
-    cursor: default;
-    margin: 1rem;
-    padding: 0.5rem;
-    position: relative;
-  }
-
-  &.website-entries--hidden .website-entries__element {
-    display: none;
-  }
-
-  .website-entries__element > .element__title {
-    display: flex;
-    margin: 0;
-  }
-
-  .website-entries__element > .element__title--text {
-    margin: auto 0;
-    padding-right: 0.5rem;
-  }
-
-  .website-entries__element .element__icon {
-    max-height: 2.5rem;
-  }
-
-  .website-entries__element .element__delete {
-    @include roboto(300, 1rem, false, italic);
-    border: 0.15rem solid $primary--dark;
-    border-radius: 0.4rem;
-    color: $primary--dark;
-    cursor: pointer;
-    padding: 0.2rem;
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .website-entries__element .element__delete:hover {
-    background-color: darken($primary, 5);
-  }
+.website-entries__checkbox {
+  height: 2rem;
+  margin: 0 0.5rem 0 0;
+  vertical-align: bottom;
+  width: 2rem;
 }

@@ -1,0 +1,53 @@
+/******* table of contents *******
+imports
+global setup
+table
+table head
+**********************************/
+
+/**********************************
+imports
+**********************************/
+@import '../general/color';
+@import '../general/fonts';
+
+/**********************************
+global setup
+**********************************/
+
+/**********************************
+table head
+**********************************/
+#website-entries th {
+  @include roboto(300, 2rem, false);
+  border-bottom: 0.1rem solid $black;
+}
+
+#website-entries .website-entries__delete-icon,
+#website-entries .website-entries__export-icon {
+  &.website-entries__delete-icon--blocked,
+  &.website-entries__export-icon--blocked {
+    filter: opacity(0.2);
+    pointer-events: none;
+  }
+
+  &:not(.website-entries__delete-icon--blocked),
+  &:not(.website-entries__export-icon--blocked) {
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+    width: 3rem;
+  }
+
+  &:not(.website-entries__delete-icon--blocked):hover,
+  &:not(.website-entries__export-icon--blocked):hover {
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));
+  }
+}
+
+#website-entries .website-entries__delete-icon {
+  width: 4rem;
+
+  &:hover {
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));
+  }
+}
