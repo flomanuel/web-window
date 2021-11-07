@@ -2,6 +2,23 @@ const path = require('path');
 const {app} = require('electron');
 
 class AbstractController {
+
+    /**
+     *
+     * @return {*}
+     */
+    get openAtStartup() {
+        return this._openAtStartup;
+    }
+
+    /**
+     *
+     * @param value
+     */
+    set openAtStartup(value) {
+        this._openAtStartup = value;
+    }
+
     /**
      *
      * @returns {string}
@@ -38,17 +55,21 @@ class AbstractController {
      *
      * @param iconPath
      * @param title
+     * @param openAtStartup
      */
-    constructor(iconPath, title) {
+    constructor(iconPath, title, openAtStartup) {
         this.appDir = app.getAppPath();
         this.iconPath = iconPath;
         this.title = title;
         this.win = null;
+        this.openAtStartup = openAtStartup
     }
 
     init() {
         this.win.webContents.on('dom-ready', () => {
-            this.show();
+            if (this.openAtStartup) {
+                this.show();
+            }
         });
 
         this.win.on('close', (e) => {
@@ -66,18 +87,6 @@ class AbstractController {
     show() {
         this.win.show();
         this.win.focus();
-    }
-
-    toggleWindow() {
-        if (!this.win.isMinimized()) {
-            if (!this.win.isFocused()) {
-                this.win.focus();
-            } else {
-                this.win.minimize();
-            }
-        } else {
-            this.show();
-        }
     }
 }
 

@@ -8,6 +8,7 @@ ReactDOM.render(
     <BrowserRouter>
         <Switch>
             <Route exact path="/new-entry" component={NewEntry}/>
+            <Route exact path="/edit-entry/:id" component={NewEntry}/>
             <Route exact path="*" component={Settings}/>
         </Switch>
     </BrowserRouter>,

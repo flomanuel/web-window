@@ -1,16 +1,35 @@
-const {BrowserWindow} = require('electron');
+const {BrowserWindow, shell} = require('electron');
 const AbstractController = require('./AbstractController');
+const electronSettings = require("electron-settings");
 
 class ExternalWebsiteController extends AbstractController {
+
+    /**
+     *
+     * @return {*}
+     */
+    get externalUrl() {
+        return this._externalUrl;
+    }
+
+    /**
+     *
+     * @param value
+     */
+    set externalUrl(value) {
+        this._externalUrl = value;
+    }
+
     /**
      *
      * @param externalUrl
      * @param iconPath
      * @param title
+     * @param openAtStartup
      * @returns {boolean|Promise<void>}
      */
-    constructor(externalUrl, iconPath, title) {
-        super(iconPath, title);
+    constructor(externalUrl, iconPath, title, openAtStartup) {
+        super(iconPath, title, openAtStartup);
         this.externalUrl = externalUrl;
 
         try {
@@ -39,7 +58,6 @@ class ExternalWebsiteController extends AbstractController {
             autoHideMenuBar: true,
             show: false,
             title: this.title,
-            // icon: this.iconPath,
             webPreferences: {
                 spellcheck: true
             },
@@ -47,6 +65,37 @@ class ExternalWebsiteController extends AbstractController {
         });
         super.init();
         await this.win.loadURL(this.externalUrl);
+        this.win.webContents.setWindowOpenHandler(this.checkIfExternalUrl.bind(this))
+    }
+
+    /**
+     *
+     * @param handlerDetails
+     * @return {{action: string}}
+     */
+    checkIfExternalUrl(handlerDetails) {
+        const regexString = this.buildExternalUrlRegex();
+        if (new RegExp(regexString).test(handlerDetails.url)) {
+            shell.openExternal(handlerDetails.url).catch(e => {
+                throw `Failed opening external url with error message: ${e}`;
+            })
+            return {action: 'deny'}
+        } else {
+            return { action: 'allow' }
+        }
+    }
+
+    /**
+     *
+     * @return {string}
+     */
+    buildExternalUrlRegex() {
+        const websites = electronSettings.getSync('user.websites');
+        const extUrlRegex = []
+        websites.forEach(ws => {
+            ws.externalUrls?.forEach(externalUrl => extUrlRegex.push(externalUrl.url))
+        })
+        return extUrlRegex.join('|');
     }
 
     /**

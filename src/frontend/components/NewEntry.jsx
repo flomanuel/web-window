@@ -1,14 +1,29 @@
 import React, {Component} from "react";
+import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
+
+import FormNewEntry from "./parts/form-new-entry";
 import "../styles/general/fontfaces.scss";
 import "../styles/newEntry.scss";
-import FormNewEntry from "./parts/form-new-entry";
-import {Link} from "react-router-dom";
 import moveBackIcon from "../../assets/icons/toggle.svg";
+
 
 class NewEntry extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+
+    /**
+     *
+     * @return {{match}}
+     */
+    static get propTypes() {
+        return {
+            match: PropTypes.object,
+            history: PropTypes.object
+        };
     }
 
     render() {
@@ -19,7 +34,7 @@ class NewEntry extends Component {
                 </Link>
                 New Entry
             </header>
-            <FormNewEntry/>
+            <FormNewEntry history={this.props.history} entryId={this.props.match.params?.id ? this.props.match.params?.id : null}/>
         </>)
     }
 }

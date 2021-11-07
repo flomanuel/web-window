@@ -2,11 +2,11 @@ const {app, Tray, Menu} = require('electron');
 const nativeImage = require('electron').nativeImage
 const path = require('path');
 const electronSettings = require('electron-settings');
-const crypto = require("crypto")
 
 const ExternalWebsiteController = require('../controller/ExternalWebsiteController');
 const SettingsController = require('../controller/SettingsController');
 const wwEvents = require('../constants/wwEvents');
+const UserDataStructureUpdater = require("./UserDataStructureUpdater");
 
 
 class WebWindow {
@@ -19,23 +19,19 @@ class WebWindow {
 
     init() {
         const lock = app.requestSingleInstanceLock();
+        process.setFdLimit(8192);
         this.settings = electronSettings.getSync();
 
         if (!lock) {
             app.quit();
         } else {
-            if (!this.settings.user) {
-                electronSettings.setSync('user', {'websites': []});
-                electronSettings.setSync('version', process.env.npm_package_version);
-                this.settings = electronSettings.getSync();
-            } else {
-                this.migrateUserData();
-            }
+            const userDataStructureUpdater = new UserDataStructureUpdater(this.settings);
+            this.settings = userDataStructureUpdater.update();
 
             app.on('second-instance', () => {
                 if (this.externalWebsiteControllers !== null) {
                     this.externalWebsiteControllers.forEach(controller => {
-                        if (controller instanceof ExternalWebsiteController) {
+                        if (controller instanceof ExternalWebsiteController && controller.openAtStartup) {
                             controller.show();
                         }
                     });
@@ -45,28 +41,14 @@ class WebWindow {
         }
     }
 
-    migrateUserData() {
-        if (!this.settings.version || this.settings.version !== process.env.npm_package_version) {
-            this.settings.version = process.env.npm_package_version;
-            electronSettings.setSync('version', this.settings.version);
-        }
-
-        this.settings.user.websites?.forEach(website => {
-            if (!website.id) {
-                website.id = crypto.createHmac('md5', Date.now().toString() + Math.random()).update(Date.now().toString() + Math.random()).digest('hex')
-            }
-        });
-        if (this.settings.user.websites.length > 0) {
-            electronSettings.setSync('user.websites', this.settings.user.websites)
-        }
-    }
-
-
     initApp() {
         app.whenReady().then(async () => {
             await this.createControllers();
             this.createTray();
-            if (this.externalWebsiteControllers.length <= 0) {
+            const lengthExtWs = this.externalWebsiteControllers.length;
+            if (lengthExtWs <= 0 || lengthExtWs > 0 && !this.externalWebsiteControllers.some(
+                c => c.openAtStartup === true
+            )) {
                 app.emit(wwEvents.SETTINGS_WINDOW_OPENED.toString());
             }
         })
@@ -81,7 +63,7 @@ class WebWindow {
             if (this.settingsController === null) {
                 this.settingsController = await new SettingsController(null, 'Settings');
             } else {
-                this.settingsController.toggleWindow();
+                this.settingsController.show();
             }
         })
     }
@@ -94,7 +76,7 @@ class WebWindow {
         this.externalWebsiteControllers = [];
         return new Promise(resolve => {
             this.settings?.user?.websites?.forEach(async (ws) => {
-                const externalWebsiteController = await new ExternalWebsiteController(ws.url, ws.iconPath, ws.title);
+                const externalWebsiteController = await new ExternalWebsiteController(ws.url, ws.iconPath, ws.title, ws.openAtStartup);
                 this.externalWebsiteControllers.push(externalWebsiteController);
             });
             resolve(this.externalWebsiteControllers);
@@ -116,10 +98,7 @@ class WebWindow {
             this.externalWebsiteControllers.forEach(controller => {
                 menuTemplate.push({
                         label: controller.title,
-                        // icon: controller.iconPath,
-                        submenu: [
-                            {label: 'show me', click: () => controller.toggleWindow()},
-                        ],
+                        click: () => controller.show()
                     },
                 );
             });
@@ -130,7 +109,6 @@ class WebWindow {
             {label: 'settings', click: () => app.emit(wwEvents.SETTINGS_WINDOW_OPENED.toString())},
             {
                 label: 'quit',
-                // icon: path.join(this.appDir, 'assets', 'icons', 'close.png'),
                 click: () => this.cleanupAndQuit()
             },
         );

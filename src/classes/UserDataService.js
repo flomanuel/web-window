@@ -21,6 +21,16 @@ class UserDataService {
         return UserDataService.subject.asObservable();
     }
 
+
+    /**
+     *
+     * @param id
+     * @return {Promise<{url, iconPath, title, id, externalUrls, openAtStartup}|boolean>}
+     */
+    static getSingleWebsiteEntry(id) {
+        return window.electron.getSingleWebsiteEntry(id);
+    }
+
     /**
      *
      * @param id
@@ -38,11 +48,13 @@ class UserDataService {
      * @param title
      * @param url
      * @param imgPath
-     * @return {Promise<unknown>}
+     * @param externalUrls
+     * @param openAtStartup
+     * @return {Promise<boolean>}
      */
-    static saveNewWebsiteEntry(title, url, imgPath) {
+    static saveNewWebsiteEntry(title, url, imgPath, externalUrls, openAtStartup) {
         return new Promise(resolve => {
-            window.electron.saveNewEntry(title ? title : 'Title', url ? url : 'https://www.google.de', imgPath).then((value) => {
+            window.electron.saveNewEntry(title || 'Title', url || 'https://www.google.de', imgPath, externalUrls, openAtStartup).then(value => {
                 if (value) {
                     UserDataService.load();
                     resolve(true);
@@ -53,6 +65,24 @@ class UserDataService {
             })
         });
     }
+
+    /**
+     *
+     * @param title
+     * @param url
+     * @param imgPath
+     * @param externalUrls
+     * @param id
+     * @param openAtStartup
+     */
+    static updateWebsiteEntry(title, url, imgPath, externalUrls, id, openAtStartup) {
+        return new Promise(resolve => {
+            window.electron.updateWebsiteEntry(title, url, imgPath, externalUrls, id, openAtStartup).then(value => {
+                resolve(value);
+            })
+        })
+    }
+
 }
 
 export default UserDataService;
