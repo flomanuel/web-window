@@ -96,7 +96,7 @@ class WebsiteEntriesList extends Component {
                             <span>Entries</span>
                         </th>
                         <th className="website-entries__data--align-right">
-                            <img className={websites?.length <= 0
+                            <img className={this.selectedEntries.length <= 0
                                 ? "website-entries__export-icon website-entries__export-icon--blocked"
                                 : "website-entries__export-icon"}
                                  src={exportIcon}
@@ -109,9 +109,8 @@ class WebsiteEntriesList extends Component {
                                          await UserDataService.removeWebsiteEntry(eID);
                                          this.updateSelectedEntries(eID);
                                      });
-                                     this.forceUpdate();
                                  }}
-                                 className={websites?.length <= 0
+                                 className={this.selectedEntries.length <= 0
                                      ? "website-entries__delete-icon website-entries__delete-icon--blocked"
                                      : "website-entries__delete-icon"}
                             />

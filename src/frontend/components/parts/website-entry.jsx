@@ -51,9 +51,13 @@ class WebsiteEntry extends Component {
                     </div>
                 </td>
                 <td className="element__buttons-wrapper website-entries__data--align-right">
-                    <Link to="/" className="button element__buttons--edit">
-                        <img src={editIcon} alt="icon for editing entry"/>
-                    </Link>
+                    {
+                        entry.id ?
+                            <Link to={`/edit-entry/${entry.id}`} className="button element__buttons--edit">
+                                <img src={editIcon} alt="icon for editing entry"/>
+                            </Link>
+                            : null
+                    }
                     <img className="button element__buttons--delete"
                          alt="icon for deleting the entry" src={deleteIcon}
                          onClick={async () => {
