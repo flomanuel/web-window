@@ -5,6 +5,7 @@ import "../../styles/parts/website-entries-list.scss";
 import exportIcon from "../../../assets/icons/export.png";
 import deleteIcon from "../../../assets/icons/delete.svg";
 
+
 class WebsiteEntriesList extends Component {
 
     /**
@@ -50,7 +51,7 @@ class WebsiteEntriesList extends Component {
         } else {
             this.selectedEntries.push(eID);
         }
-        this.forceUpdate(); //todo: find better solution so we don't have to force an component update
+        this.forceUpdate(); //todo: find better solution so we don't have to force a component update
     }
 
     exportSelectedEntries() { //todo: add info popup confirming export

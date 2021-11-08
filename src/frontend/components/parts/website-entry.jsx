@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import editIcon from "../../../assets/icons/edit.svg";
 import deleteIcon from "../../../assets/icons/delete.svg";
 
+
 class WebsiteEntry extends Component {
 
     /**

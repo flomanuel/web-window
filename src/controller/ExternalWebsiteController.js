@@ -1,14 +1,30 @@
 const {BrowserWindow, shell} = require('electron');
 const AbstractController = require('./AbstractController');
-const electronSettings = require("electron-settings");
+
 
 class ExternalWebsiteController extends AbstractController {
 
     /**
      *
-     * @return {*}
+     * @return {{id, url}[]}
      */
-    get externalUrl() {
+    get externalUrls() {
+        return this._externalUrls;
+    }
+
+    /**
+     *
+     * @param value
+     */
+    set externalUrls(value) {
+        this._externalUrls = value;
+    }
+
+    /**
+     *
+     * @return {string}
+     */
+    get url() {
         return this._externalUrl;
     }
 
@@ -16,21 +32,23 @@ class ExternalWebsiteController extends AbstractController {
      *
      * @param value
      */
-    set externalUrl(value) {
+    set url(value) {
         this._externalUrl = value;
     }
 
     /**
      *
-     * @param externalUrl
+     * @param url
      * @param iconPath
      * @param title
      * @param openAtStartup
+     * @param externalUrls
      * @returns {boolean|Promise<void>}
      */
-    constructor(externalUrl, iconPath, title, openAtStartup) {
+    constructor(url, iconPath, title, openAtStartup, externalUrls) {
         super(iconPath, title, openAtStartup);
-        this.externalUrl = externalUrl;
+        this.url = url;
+        this._externalUrls = externalUrls;
 
         try {
             if (this.validateData()) {
@@ -64,7 +82,7 @@ class ExternalWebsiteController extends AbstractController {
             skipTaskbar: true
         });
         super.init();
-        await this.win.loadURL(this.externalUrl);
+        await this.win.loadURL(this.url);
         this.win.webContents.setWindowOpenHandler(this.checkIfExternalUrl.bind(this))
     }
 
@@ -81,7 +99,7 @@ class ExternalWebsiteController extends AbstractController {
             })
             return {action: 'deny'}
         } else {
-            return { action: 'allow' }
+            return {action: 'allow'}
         }
     }
 
@@ -90,12 +108,9 @@ class ExternalWebsiteController extends AbstractController {
      * @return {string}
      */
     buildExternalUrlRegex() {
-        const websites = electronSettings.getSync('user.websites');
-        const extUrlRegex = []
-        websites.forEach(ws => {
-            ws.externalUrls?.forEach(externalUrl => extUrlRegex.push(externalUrl.url))
-        })
-        return extUrlRegex.join('|');
+        const extUrlRegexArray = []
+        this.externalUrls.forEach(externalUrl => extUrlRegexArray.push(externalUrl.url));
+        return extUrlRegexArray.join('|');
     }
 
     /**
@@ -103,12 +118,12 @@ class ExternalWebsiteController extends AbstractController {
      * @returns {string}
      */
     validateData() {
-        if (!this.externalUrl) {
+        if (!this.url) {
             throw 'External URL not specified.';
         } else if (!this.title) {
             throw 'Title not specified.';
         }
-        return this.externalUrl && this.title;
+        return this.url && this.title;
     }
 }
 

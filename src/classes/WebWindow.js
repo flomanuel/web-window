@@ -10,6 +10,7 @@ const UserDataStructureUpdater = require("./UserDataStructureUpdater");
 
 
 class WebWindow {
+
     constructor() {
         this.externalWebsiteControllers = null;
         this.settings = null;
@@ -76,7 +77,7 @@ class WebWindow {
         this.externalWebsiteControllers = [];
         return new Promise(resolve => {
             this.settings?.user?.websites?.forEach(async (ws) => {
-                const externalWebsiteController = await new ExternalWebsiteController(ws.url, ws.iconPath, ws.title, ws.openAtStartup);
+                const externalWebsiteController = await new ExternalWebsiteController(ws.url, ws.iconPath, ws.title, ws.openAtStartup, ws.externalUrls);
                 this.externalWebsiteControllers.push(externalWebsiteController);
             });
             resolve(this.externalWebsiteControllers);

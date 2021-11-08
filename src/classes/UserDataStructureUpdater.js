@@ -1,6 +1,7 @@
 const electronSettings = require("electron-settings");
 const HashGeneratorBackend = require("./HashGeneratorBackend");
 
+
 class UserDataStructureUpdater {
 
     /**
