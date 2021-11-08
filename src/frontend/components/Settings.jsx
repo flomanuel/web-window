@@ -6,14 +6,23 @@ import "../styles/settings.scss";
 import newElementIcon from "../../assets/icons/add.svg";
 import WebsiteEntriesList from "./parts/website-entries-list";
 
+
 class Settings extends Component {
 
+    /**
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.imgPath = null;
         this.state = {visibilityList: true};
     }
 
+    /**
+     *
+     * @return {JSX.Element}
+     */
     render() {
         return (
             <div className="Settings">

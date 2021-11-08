@@ -1,11 +1,12 @@
 const path = require('path');
 const {app} = require('electron');
 
+
 class AbstractController {
 
     /**
      *
-     * @return {*}
+     * @return {boolean}
      */
     get openAtStartup() {
         return this._openAtStartup;

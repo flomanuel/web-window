@@ -148,11 +148,24 @@ class SettingsController extends AbstractController {
      * @return {string}
      */
     convertIconPathToBase64String(imgPath) {
-        let iconPath = '';
-        if (typeof imgPath === 'string' && imgPath !== '') {
-            iconPath = `data:image/png;base64,${this.base64Encode(imgPath)}`;
+        if (!this.isBase64String(imgPath)) {
+            let iconPath = '';
+            if (typeof imgPath === 'string' && imgPath !== '') {
+                iconPath = `data:image/png;base64,${this.base64Encode(imgPath)}`;
+            }
+            return iconPath;
+        } else {
+            return imgPath;
         }
-        return iconPath;
+    }
+
+    /**
+     *
+     * @param imgPath
+     * @return {boolean}
+     */
+    isBase64String(imgPath) {
+        return imgPath.startsWith('data:image/png;base64');
     }
 }
 

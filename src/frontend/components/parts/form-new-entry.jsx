@@ -139,7 +139,7 @@ class FormNewEntry extends Component {
      * @return {JSX.Element}
      */
     render() {
-        return (  //todo: refactor html into subcomponents
+        return (  //todo: split html into subcomponents
             <form className="form-new-entry" onSubmit={this.saveNewEntry.bind(this)}>
                 <div className="form-new-entry__elements">
                     <div className="form-new-entry__element form-new-entry__element--title">

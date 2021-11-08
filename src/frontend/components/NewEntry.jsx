@@ -10,6 +10,10 @@ import moveBackIcon from "../../assets/icons/toggle.svg";
 
 class NewEntry extends Component {
 
+    /**
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
     }
@@ -26,6 +30,10 @@ class NewEntry extends Component {
         };
     }
 
+    /**
+     *
+     * @return {JSX.Element}
+     */
     render() {
         return (<>
             <header className="header">
@@ -34,7 +42,7 @@ class NewEntry extends Component {
                 </Link>
                 New Entry
             </header>
-            <FormNewEntry history={this.props.history} entryId={this.props.match.params?.id ? this.props.match.params?.id : null}/>
+            <FormNewEntry history={this.props.history} entryId={this.props.match.params.id || null}/>
         </>)
     }
 }

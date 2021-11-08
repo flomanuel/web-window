@@ -1,7 +1,12 @@
 import {Subject} from 'rxjs';
 
+
 class UserDataService {
 
+    /**
+     *
+     * @return {Subject<T>}
+     */
     static get subject() {
         if (!UserDataService._subject) {
             UserDataService._subject = new Subject();
@@ -17,7 +22,11 @@ class UserDataService {
         })
     }
 
-    static onDataChange() {
+    /**
+     *
+     * @return {Observable<T>}
+     */
+    static onDataChange() { //todo: see if you can remove observables
         return UserDataService.subject.asObservable();
     }
 
@@ -52,7 +61,7 @@ class UserDataService {
      * @param openAtStartup
      * @return {Promise<boolean>}
      */
-    static saveNewWebsiteEntry(title, url, imgPath, externalUrls, openAtStartup) {
+    static saveNewWebsiteEntry(title, url, imgPath, externalUrls, openAtStartup) { //todo: replace data clump with class (also on other code places)
         return new Promise(resolve => {
             window.electron.saveNewEntry(title || 'Title', url || 'https://www.google.de', imgPath, externalUrls, openAtStartup).then(value => {
                 if (value) {

@@ -140,7 +140,7 @@ info "Switching to build path... \n"
 cd $buildPath || fatal "Couldn't switch to build path."
 success "Switching to build path... \n"
 
-# get Electron"s prebuilt binaries
+# get Electron's prebuilt binaries
 divider
 info "Downloading electrons binaries... \n"
 npm install -g electron-packager || fatal "Couldn't download electrons binaries."
