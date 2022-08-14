@@ -1,4 +1,4 @@
-![WebWindow logo](doc/assets/mainImage.png)
+# ⛔️ DEPRECATED
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT)
 
