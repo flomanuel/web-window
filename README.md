@@ -1,5 +1,8 @@
 # ⛔️ DEPRECATED
 
+Please consider using my new project [kigh](https://github.com/flomanuel/kigh) instead.
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 [![License](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT)
 
 ## Overview
